@@ -1,0 +1,107 @@
+{
+  "project_name": "ORACLIS South Cotabato Spatio-Temporal Bayesian Scenario Engine",
+  "administrative_scope": {
+    "province": "South Cotabato",
+    "province_psgc": "1206300000",
+    "expected_localities": 11,
+    "expected_barangays": 199
+  },
+  "random_seed": 42,
+  "source_barangay_data": "data/ORACLIS_Monthly_Barangay_Data_Corrected.csv",
+  "boundaries": {
+    "cache_geojson": "data/cache/south_cotabato_barangays_2023.geojson",
+    "cache_metadata": "data/cache/south_cotabato_barangays_2023_metadata.json",
+    "request_timeout_seconds": 60,
+    "source_vintage": "31 December 2023"
+  },
+  "matching": {
+    "minimum_source_match_rate": 0.95
+  },
+  "projection": {
+    "forecast_start": "2026-01-01",
+    "forecast_end": "2050-12-01",
+    "climatology_start": "2021-01-01",
+    "annual_growth_clip": [
+      -0.03,
+      0.03
+    ],
+    "trend_damping_years": 10.0,
+    "maximum_month_to_month_growth": 0.45,
+    "scenario_prior_scale": 0.3,
+    "scenario_prior_max_monthly_cases": 4.0
+  },
+  "spatial": {
+    "diffusion_weight": 0.18,
+    "neighbor_alert_boost": 0.1,
+    "boundary_tolerance_degrees": 8e-05,
+    "minimum_neighbors": 3,
+    "fallback_max_distance_km": 18.0,
+    "connect_all_components": true,
+    "temporal_memory_weight": 0.25
+  },
+  "bayesian": {
+    "monte_carlo_draws": 250,
+    "base_coefficient_of_variation": 0.42,
+    "horizon_cv_growth_per_year": 0.018,
+    "maximum_coefficient_of_variation": 0.95,
+    "lower_quantile": 0.025,
+    "upper_quantile": 0.975,
+    "observed_updates_file": "data/observed_cases_updates.csv"
+  },
+  "outbreak": {
+    "historical_quantile": 0.9,
+    "std_multiplier": 1.5,
+    "minimum_case_threshold": 1,
+    "probability_thresholds": {
+      "moderate": 0.3,
+      "high": 0.6,
+      "critical": 0.8
+    },
+    "persistence_months": 2,
+    "minimum_high_risk_neighbors": 2,
+    "red_cluster_detection": {
+      "enabled": true,
+      "minimum_connected_barangays": 3,
+      "case_color_low_quantile": 0.02,
+      "case_color_high_quantile": 0.98,
+      "red_intensity_threshold": 0.8,
+      "adjacency_mode": "STRICT_QUEEN_CONTIGUITY_ONLY",
+      "description": "Trigger a spatial cluster outbreak alert when at least three truly adjacent barangays are simultaneously in the red portion of the projected-case color gradient."
+    },
+    "individual_outbreak_probability_threshold": 0.75
+  },
+  "outputs": {
+    "plot_dpi": 300,
+    "top_risk_rows": 100,
+    "map_snapshot_dates": [
+      "2026-01-01",
+      "2030-01-01",
+      "2040-01-01",
+      "2050-12-01"
+    ]
+  },
+  "mock_grid_size": 4,
+  "interface": {
+    "map_engine": "Leaflet 1.9.4 with OpenStreetMap tiles",
+    "playback_interval_ms": 3600,
+    "outbreak_ping_risk_levels": [
+      "INDIVIDUAL_BARANGAY",
+      "PROBABILISTIC_SPATIOTEMPORAL",
+      "THREE_CONNECTED_RED_BARANGAYS"
+    ],
+    "gray_outside_south_cotabato": true,
+    "municipality_boundary_weight_px": 3.3,
+    "province_boundary_weight_px": 5.0,
+    "permanent_barangay_labels": true,
+    "boundary_cache_policy": "Reject synthetic rectangular grids and redownload real 2023 polygons",
+    "gap_fill_tolerance_degrees": 0.0035,
+    "minimum_gap_piece_area_degrees2": 1e-12,
+    "map_layout": "Full-screen Leaflet map with collapsible analytics drawer and floating controls",
+    "map_case_color_scale": "Continuous green-yellow-red projected-case gradient; 3+ strict-adjacent red barangays trigger bright-red cluster alerts and clickable pings",
+    "boundary_gap_policy": "Create a complete non-overlapping planar partition; assign uncovered faces to the nearest barangay and resolve source overlaps deterministically",
+    "barangay_boundary_color": "#ffffff",
+    "municipality_boundary_color": "#ffffff",
+    "province_boundary_color": "#ffffff",
+    "gap_partition_validation_ratio": 1e-10
+  }
+}

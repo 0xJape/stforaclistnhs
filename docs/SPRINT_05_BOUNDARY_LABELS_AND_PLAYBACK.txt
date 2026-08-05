@@ -1,0 +1,25 @@
+ORACLIS — Sprint 05: Boundary Layers, Labels, Playback, and Spatial Surface
+Date: 2026-07-27
+
+Delivered
+- Static 199-barangay GeoJSON stays independent from API scenario data.
+- Barangay and municipality label layers added with visibility controls.
+- Month timeline supports slider, previous/next actions, and play/pause playback.
+- Spatiotemporal surface supports stacked display with boundaries, labels, and alerts.
+- Heatmap uses classic intensity ramp: transparent -> cyan -> green -> yellow -> orange -> red.
+- Barangay boundaries use thin white 0.75px lines.
+- South Cotabato outer boundary uses thick white 3.5px line.
+- Selecting a barangay adds red outline to all barangays in same municipality.
+- Layer dialog controls heat surface, risk fill, boundaries, labels, and alerts.
+- Alert control includes enabled pulse with reduced-motion fallback.
+
+Validation
+- npm run build: PASS
+- npm run lint: PASS
+- Browser loaded 199 barangays and forecast data after API connection.
+- /maps/south_cotabato_province_boundary.geojson: HTTP success, FeatureCollection with 1 feature.
+
+Known limits
+- Map status display can retain loading wording after geometry finishes; do not use it as sole render proof.
+- Municipality outline GeoJSON is not yet rendered; selected municipality uses its underlying barangay boundaries.
+- All forecast outputs are scenario data. No external alert notifications are enabled.

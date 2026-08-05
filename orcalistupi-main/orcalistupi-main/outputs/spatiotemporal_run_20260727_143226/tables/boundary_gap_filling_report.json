@@ -1,0 +1,19 @@
+{
+  "algorithm": "Noded planar-face partition with nearest-barangay gap allocation and deterministic overlap resolution",
+  "tolerance_degrees": 0.0035,
+  "validation_ratio_tolerance": 1e-10,
+  "source_feature_count": 199,
+  "atomic_face_count": 282,
+  "single_owner_face_count": 199,
+  "detected_gap_face_count": 29,
+  "detected_overlap_face_count": 54,
+  "assigned_gap_area_degrees2": 0.0040959690309083086,
+  "resolved_source_overlap_area_degrees2": 0.001258920534336277,
+  "assigned_gap_area_km2_approx": 50.446974074915474,
+  "resolved_source_overlap_area_km2_approx": 15.938347370796269,
+  "province_shell_area_km2_approx": 3586.9496981636544,
+  "residual_uncovered_area_km2_approx": 8.088672254402643e-09,
+  "residual_uncovered_ratio": 2.2551541591242793e-12,
+  "overlap_ratio": 0.0,
+  "fully_covered": true
+}

@@ -1,0 +1,9 @@
+import { useState, type FormEvent } from 'react'
+import './ReportingWorkspace.css'
+
+type User={psgc:string;barangay_name:string;username:string}
+export default function LoginModal({onLogin,onClose}:{onLogin:(user:User)=>void;onClose:()=>void}){
+ const [username,setUsername]=useState(''),[password,setPassword]=useState(''),[error,setError]=useState(''),[saving,setSaving]=useState(false)
+ const submit=async(e:FormEvent)=>{e.preventDefault();setSaving(true);setError('');try{const response=await fetch('/api/auth/login',{method:'POST',headers:{'Content-Type':'application/json'},credentials:'same-origin',body:JSON.stringify({username,password})}),body=await response.json();if(!response.ok)throw new Error(body.message??'Login failed');onLogin(body.data)}catch(err){setError(err instanceof Error?err.message:'Login failed')}finally{setSaving(false)}}
+ return <div className="reporting-backdrop" role="presentation" onMouseDown={onClose}><section className="reporting-workspace login-modal" role="dialog" aria-modal="true" aria-labelledby="login-title" onMouseDown={e=>e.stopPropagation()}><header><div><span className="eyebrow">Barangay staff access</span><h2 id="login-title">Sign in</h2><p>Private reporting dashboard. Public map stays read-only.</p></div><button className="modal-close" aria-label="Close login" onClick={onClose}>×</button></header><form onSubmit={submit}><label>Username<input autoComplete="username" required value={username} onChange={e=>setUsername(e.target.value)}/></label><label>Password<input type="password" autoComplete="current-password" required value={password} onChange={e=>setPassword(e.target.value)}/></label>{error&&<div className="reporting-error" role="alert">{error}</div>}<button className="reporting-submit" disabled={saving}>{saving?'Signing in…':'Sign in'}</button><p className="demo-login">Use <code>barangay.municipality@oraclis.com</code>. Example: <code>benitez.banga@oraclis.com</code>.</p></form></section></div>
+}

@@ -1,0 +1,16 @@
+SPRINT 06 — ANALYTICS AND REPORTS
+
+Delivered
+- Selected barangay timeline from GET /api/timeline?psgc=...
+- Native SVG projected-case trend in selected details panel
+- Model-driver readout: dominant factor and neighbour spatial lag
+- Scenario CSV export for loaded date rows
+
+Scope guard
+- Forecast/scenario output only. Not official outbreak declaration.
+- No chart or export dependency added.
+
+Validation
+- npm run build: PASS
+- npm run lint: PASS
+- Non-blocking Vite warning: bundled JS chunk exceeds 500 kB.

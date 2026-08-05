@@ -1,0 +1,18 @@
+# Local secrets
+.env
+**/.env
+!.env.example
+!**/.env.example
+
+# Generated/runtime files
+__pycache__/
+*.py[cod]
+.vite/
+.venv/
+.venv-*/
+venv/
+node_modules/
+frontend/dist/
+**/data/make_alert_delivery.sqlite
+**/data/oraclis_reporting_demo.sqlite
+orcalistupi-main/orcalistupi-main/outputs/spatiotemporal_run_20260727_140517/

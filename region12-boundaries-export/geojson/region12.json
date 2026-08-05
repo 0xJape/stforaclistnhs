@@ -1,0 +1,263 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "koronadal",
+      "properties": { "id": "koronadal", "name": "Koronadal", "province": "South Cotabato" },
+      "geometry": { "type": "Polygon", "coordinates": [[[124.99,6.47],[125.05,6.47],[125.07,6.42],[125.05,6.37],[124.99,6.36],[124.94,6.40],[124.93,6.44],[124.99,6.47]]] }
+    },
+    {
+      "type": "Feature",
+      "id": "general_santos",
+      "properties": { "id": "general_santos", "name": "General Santos", "province": "South Cotabato" },
+      "geometry": { "type": "Polygon", "coordinates": [[[125.14,6.17],[125.21,6.18],[125.24,6.13],[125.22,6.07],[125.16,6.05],[125.11,6.08],[125.10,6.14],[125.14,6.17]]] }
+    },
+    {
+      "type": "Feature",
+      "id": "polomolok",
+      "properties": { "id": "polomolok", "name": "Polomolok", "province": "South Cotabato" },
+      "geometry": { "type": "Polygon", "coordinates": [[[125.06,6.22],[125.13,6.23],[125.15,6.17],[125.13,6.11],[125.07,6.10],[125.02,6.14],[125.01,6.19],[125.06,6.22]]] }
+    },
+    {
+      "type": "Feature",
+      "id": "tupi",
+      "properties": { "id": "tupi", "name": "Tupi", "province": "South Cotabato" },
+      "geometry": { "type": "Polygon", "coordinates": [[[125.01,6.34],[125.07,6.35],[125.10,6.30],[125.08,6.24],[125.02,6.23],[124.97,6.26],[124.96,6.31],[125.01,6.34]]] }
+    },
+    {
+      "type": "Feature",
+      "id": "surallah",
+      "properties": { "id": "surallah", "name": "Surallah", "province": "South Cotabato" },
+      "geometry": { "type": "Polygon", "coordinates": [[[124.74,6.37],[124.80,6.38],[124.83,6.33],[124.81,6.28],[124.75,6.27],[124.70,6.30],[124.69,6.35],[124.74,6.37]]] }
+    },
+    {
+      "type": "Feature",
+      "id": "lake_sebu",
+      "properties": { "id": "lake_sebu", "name": "Lake Sebu", "province": "South Cotabato" },
+      "geometry": { "type": "Polygon", "coordinates": [[[124.77,6.25],[124.84,6.26],[124.87,6.20],[124.85,6.14],[124.79,6.13],[124.74,6.16],[124.73,6.22],[124.77,6.25]]] }
+    },
+    {
+      "type": "Feature",
+      "id": "tampakan",
+      "properties": { "id": "tampakan", "name": "Tampakan", "province": "South Cotabato" },
+      "geometry": { "type": "Polygon", "coordinates": [[[124.93,6.27],[124.99,6.28],[125.02,6.22],[125.00,6.17],[124.94,6.16],[124.89,6.19],[124.88,6.24],[124.93,6.27]]] }
+    },
+    {
+      "type": "Feature",
+      "id": "tboli",
+      "properties": { "id": "tboli", "name": "T'boli", "province": "South Cotabato" },
+      "geometry": { "type": "Polygon", "coordinates": [[[124.66,6.19],[124.73,6.20],[124.76,6.14],[124.74,6.09],[124.68,6.08],[124.63,6.11],[124.62,6.16],[124.66,6.19]]] }
+    },
+    {
+      "type": "Feature",
+      "id": "banga",
+      "properties": { "id": "banga", "name": "Banga", "province": "South Cotabato" },
+      "geometry": { "type": "Polygon", "coordinates": [[[124.78,6.51],[124.85,6.52],[124.88,6.46],[124.86,6.41],[124.80,6.40],[124.75,6.43],[124.74,6.48],[124.78,6.51]]] }
+    },
+    {
+      "type": "Feature",
+      "id": "norala",
+      "properties": { "id": "norala", "name": "Norala", "province": "South Cotabato" },
+      "geometry": { "type": "Polygon", "coordinates": [[[124.67,6.55],[124.74,6.56],[124.77,6.50],[124.75,6.45],[124.69,6.44],[124.64,6.47],[124.63,6.52],[124.67,6.55]]] }
+    },
+    {
+      "type": "Feature",
+      "id": "sto_nino",
+      "properties": { "id": "sto_nino", "name": "Sto. Niño", "province": "South Cotabato" },
+      "geometry": { "type": "Polygon", "coordinates": [[[124.57,6.48],[124.64,6.49],[124.67,6.43],[124.65,6.38],[124.59,6.37],[124.54,6.40],[124.53,6.45],[124.57,6.48]]] }
+    },
+    {
+      "type": "Feature",
+      "id": "tantangan",
+      "properties": { "id": "tantangan", "name": "Tantangan", "province": "South Cotabato" },
+      "geometry": { "type": "Polygon", "coordinates": [[[124.88,6.52],[124.95,6.53],[124.98,6.48],[124.96,6.43],[124.90,6.42],[124.85,6.45],[124.84,6.50],[124.88,6.52]]] }
+    },
+    {
+      "type": "Feature",
+      "id": "cotabato_city",
+      "properties": { "id": "cotabato_city", "name": "Cotabato City", "province": "Maguindanao" },
+      "geometry": { "type": "Polygon", "coordinates": [[[124.22,7.22],[124.28,7.23],[124.31,7.18],[124.29,7.13],[124.23,7.12],[124.18,7.15],[124.17,7.20],[124.22,7.22]]] }
+    },
+    {
+      "type": "Feature",
+      "id": "kidapawan",
+      "properties": { "id": "kidapawan", "name": "Kidapawan", "province": "Cotabato" },
+      "geometry": { "type": "Polygon", "coordinates": [[[125.07,7.02],[125.13,7.03],[125.16,6.97],[125.14,6.92],[125.08,6.91],[125.03,6.94],[125.02,6.99],[125.07,7.02]]] }
+    },
+    {
+      "type": "Feature",
+      "id": "mlang",
+      "properties": { "id": "mlang", "name": "M'lang", "province": "Cotabato" },
+      "geometry": { "type": "Polygon", "coordinates": [[[124.87,7.11],[124.93,7.12],[124.96,7.06],[124.94,7.01],[124.88,7.00],[124.83,7.03],[124.82,7.08],[124.87,7.11]]] }
+    },
+    {
+      "type": "Feature",
+      "id": "kabacan",
+      "properties": { "id": "kabacan", "name": "Kabacan", "province": "Cotabato" },
+      "geometry": { "type": "Polygon", "coordinates": [[[124.83,7.20],[124.89,7.21],[124.92,7.15],[124.90,7.10],[124.84,7.09],[124.79,7.12],[124.78,7.17],[124.83,7.20]]] }
+    },
+    {
+      "type": "Feature",
+      "id": "carmen",
+      "properties": { "id": "carmen", "name": "Carmen", "province": "Cotabato" },
+      "geometry": { "type": "Polygon", "coordinates": [[[124.80,7.01],[124.86,7.02],[124.89,6.96],[124.87,6.91],[124.81,6.90],[124.76,6.93],[124.75,6.98],[124.80,7.01]]] }
+    },
+    {
+      "type": "Feature",
+      "id": "antipas",
+      "properties": { "id": "antipas", "name": "Antipas", "province": "Cotabato" },
+      "geometry": { "type": "Polygon", "coordinates": [[[124.98,6.86],[125.05,6.87],[125.08,6.81],[125.06,6.76],[125.00,6.75],[124.95,6.78],[124.94,6.83],[124.98,6.86]]] }
+    },
+    {
+      "type": "Feature",
+      "id": "arakan",
+      "properties": { "id": "arakan", "name": "Arakan", "province": "Cotabato" },
+      "geometry": { "type": "Polygon", "coordinates": [[[125.15,6.93],[125.21,6.94],[125.24,6.88],[125.22,6.83],[125.16,6.82],[125.11,6.85],[125.10,6.90],[125.15,6.93]]] }
+    },
+    {
+      "type": "Feature",
+      "id": "magpet",
+      "properties": { "id": "magpet", "name": "Magpet", "province": "Cotabato" },
+      "geometry": { "type": "Polygon", "coordinates": [[[125.11,6.80],[125.17,6.81],[125.20,6.75],[125.18,6.70],[125.12,6.69],[125.07,6.72],[125.06,6.77],[125.11,6.80]]] }
+    },
+    {
+      "type": "Feature",
+      "id": "makilala",
+      "properties": { "id": "makilala", "name": "Makilala", "province": "Cotabato" },
+      "geometry": { "type": "Polygon", "coordinates": [[[125.09,6.97],[125.15,6.98],[125.18,6.92],[125.16,6.87],[125.10,6.86],[125.05,6.89],[125.04,6.94],[125.09,6.97]]] }
+    },
+    {
+      "type": "Feature",
+      "id": "matalam",
+      "properties": { "id": "matalam", "name": "Matalam", "province": "Cotabato" },
+      "geometry": { "type": "Polygon", "coordinates": [[[124.91,7.07],[124.97,7.08],[125.00,7.02],[124.98,6.97],[124.92,6.96],[124.87,6.99],[124.86,7.04],[124.91,7.07]]] }
+    },
+    {
+      "type": "Feature",
+      "id": "pigkawayan",
+      "properties": { "id": "pigkawayan", "name": "Pigkawayan", "province": "Cotabato" },
+      "geometry": { "type": "Polygon", "coordinates": [[[124.44,7.28],[124.50,7.29],[124.53,7.23],[124.51,7.18],[124.45,7.17],[124.40,7.20],[124.39,7.25],[124.44,7.28]]] }
+    },
+    {
+      "type": "Feature",
+      "id": "pikit",
+      "properties": { "id": "pikit", "name": "Pikit", "province": "Cotabato" },
+      "geometry": { "type": "Polygon", "coordinates": [[[124.63,7.08],[124.69,7.09],[124.72,7.03],[124.70,6.98],[124.64,6.97],[124.59,7.00],[124.58,7.05],[124.63,7.08]]] }
+    },
+    {
+      "type": "Feature",
+      "id": "sultan_kudarat",
+      "properties": { "id": "sultan_kudarat", "name": "Sultan Kudarat", "province": "Maguindanao" },
+      "geometry": { "type": "Polygon", "coordinates": [[[124.01,7.30],[124.07,7.31],[124.10,7.25],[124.08,7.20],[124.02,7.19],[123.97,7.22],[123.96,7.27],[124.01,7.30]]] }
+    },
+    {
+      "type": "Feature",
+      "id": "isulan",
+      "properties": { "id": "isulan", "name": "Isulan", "province": "Sultan Kudarat" },
+      "geometry": { "type": "Polygon", "coordinates": [[[124.59,6.63],[124.65,6.64],[124.68,6.58],[124.66,6.53],[124.60,6.52],[124.55,6.55],[124.54,6.60],[124.59,6.63]]] }
+    },
+    {
+      "type": "Feature",
+      "id": "tacurong",
+      "properties": { "id": "tacurong", "name": "Tacurong", "province": "Sultan Kudarat" },
+      "geometry": { "type": "Polygon", "coordinates": [[[124.66,6.70],[124.72,6.71],[124.75,6.65],[124.73,6.60],[124.67,6.59],[124.62,6.62],[124.61,6.67],[124.66,6.70]]] }
+    },
+    {
+      "type": "Feature",
+      "id": "esperanza",
+      "properties": { "id": "esperanza", "name": "Esperanza", "province": "Sultan Kudarat" },
+      "geometry": { "type": "Polygon", "coordinates": [[[124.52,6.76],[124.58,6.77],[124.61,6.71],[124.59,6.66],[124.53,6.65],[124.48,6.68],[124.47,6.73],[124.52,6.76]]] }
+    },
+    {
+      "type": "Feature",
+      "id": "kalamansig",
+      "properties": { "id": "kalamansig", "name": "Kalamansig", "province": "Sultan Kudarat" },
+      "geometry": { "type": "Polygon", "coordinates": [[[124.04,6.57],[124.11,6.58],[124.14,6.52],[124.12,6.47],[124.06,6.46],[124.01,6.49],[124.00,6.54],[124.04,6.57]]] }
+    },
+    {
+      "type": "Feature",
+      "id": "lebak",
+      "properties": { "id": "lebak", "name": "Lebak", "province": "Sultan Kudarat" },
+      "geometry": { "type": "Polygon", "coordinates": [[[124.10,6.70],[124.16,6.71],[124.19,6.65],[124.17,6.60],[124.11,6.59],[124.06,6.62],[124.05,6.67],[124.10,6.70]]] }
+    },
+    {
+      "type": "Feature",
+      "id": "lutayan",
+      "properties": { "id": "lutayan", "name": "Lutayan", "province": "Sultan Kudarat" },
+      "geometry": { "type": "Polygon", "coordinates": [[[124.87,6.61],[124.93,6.62],[124.96,6.56],[124.94,6.51],[124.88,6.50],[124.83,6.53],[124.82,6.58],[124.87,6.61]]] }
+    },
+    {
+      "type": "Feature",
+      "id": "lambayong",
+      "properties": { "id": "lambayong", "name": "Lambayong", "province": "Sultan Kudarat" },
+      "geometry": { "type": "Polygon", "coordinates": [[[124.74,6.57],[124.80,6.58],[124.83,6.52],[124.81,6.47],[124.75,6.46],[124.70,6.49],[124.69,6.54],[124.74,6.57]]] }
+    },
+    {
+      "type": "Feature",
+      "id": "bagumbayan",
+      "properties": { "id": "bagumbayan", "name": "Bagumbayan", "province": "Sultan Kudarat" },
+      "geometry": { "type": "Polygon", "coordinates": [[[124.44,6.83],[124.50,6.84],[124.53,6.78],[124.51,6.73],[124.45,6.72],[124.40,6.75],[124.39,6.80],[124.44,6.83]]] }
+    },
+    {
+      "type": "Feature",
+      "id": "columbio",
+      "properties": { "id": "columbio", "name": "Columbio", "province": "Sultan Kudarat" },
+      "geometry": { "type": "Polygon", "coordinates": [[[124.96,6.75],[125.02,6.76],[125.05,6.70],[125.03,6.65],[124.97,6.64],[124.92,6.67],[124.91,6.72],[124.96,6.75]]] }
+    },
+    {
+      "type": "Feature",
+      "id": "president_quirino",
+      "properties": { "id": "president_quirino", "name": "President Quirino", "province": "Sultan Kudarat" },
+      "geometry": { "type": "Polygon", "coordinates": [[[124.37,6.68],[124.43,6.69],[124.46,6.63],[124.44,6.58],[124.38,6.57],[124.33,6.60],[124.32,6.65],[124.37,6.68]]] }
+    },
+    {
+      "type": "Feature",
+      "id": "palimbang",
+      "properties": { "id": "palimbang", "name": "Palimbang", "province": "Sultan Kudarat" },
+      "geometry": { "type": "Polygon", "coordinates": [[[124.21,6.45],[124.27,6.46],[124.30,6.40],[124.28,6.35],[124.22,6.34],[124.17,6.37],[124.16,6.42],[124.21,6.45]]] }
+    },
+    {
+      "type": "Feature",
+      "id": "alabel",
+      "properties": { "id": "alabel", "name": "Alabel", "province": "Sarangani" },
+      "geometry": { "type": "Polygon", "coordinates": [[[125.15,6.10],[125.21,6.11],[125.24,6.05],[125.22,6.00],[125.16,5.99],[125.11,6.02],[125.10,6.07],[125.15,6.10]]] }
+    },
+    {
+      "type": "Feature",
+      "id": "glan",
+      "properties": { "id": "glan", "name": "Glan", "province": "Sarangani" },
+      "geometry": { "type": "Polygon", "coordinates": [[[124.77,5.82],[124.83,5.83],[124.86,5.77],[124.84,5.72],[124.78,5.71],[124.73,5.74],[124.72,5.79],[124.77,5.82]]] }
+    },
+    {
+      "type": "Feature",
+      "id": "kiamba",
+      "properties": { "id": "kiamba", "name": "Kiamba", "province": "Sarangani" },
+      "geometry": { "type": "Polygon", "coordinates": [[[124.62,6.02],[124.68,6.03],[124.71,5.97],[124.69,5.92],[124.63,5.91],[124.58,5.94],[124.57,5.99],[124.62,6.02]]] }
+    },
+    {
+      "type": "Feature",
+      "id": "maasim",
+      "properties": { "id": "maasim", "name": "Maasim", "province": "Sarangani" },
+      "geometry": { "type": "Polygon", "coordinates": [[[124.84,5.98],[124.90,5.99],[124.93,5.93],[124.91,5.88],[124.85,5.87],[124.80,5.90],[124.79,5.95],[124.84,5.98]]] }
+    },
+    {
+      "type": "Feature",
+      "id": "maitum",
+      "properties": { "id": "maitum", "name": "Maitum", "province": "Sarangani" },
+      "geometry": { "type": "Polygon", "coordinates": [[[124.46,6.04],[124.52,6.05],[124.55,5.99],[124.53,5.94],[124.47,5.93],[124.42,5.96],[124.41,6.01],[124.46,6.04]]] }
+    },
+    {
+      "type": "Feature",
+      "id": "malapatan",
+      "properties": { "id": "malapatan", "name": "Malapatan", "province": "Sarangani" },
+      "geometry": { "type": "Polygon", "coordinates": [[[124.97,5.95],[125.03,5.96],[125.06,5.90],[125.04,5.85],[124.98,5.84],[124.93,5.87],[124.92,5.92],[124.97,5.95]]] }
+    },
+    {
+      "type": "Feature",
+      "id": "malungon",
+      "properties": { "id": "malungon", "name": "Malungon", "province": "Sarangani" },
+      "geometry": { "type": "Polygon", "coordinates": [[[125.26,6.27],[125.32,6.28],[125.35,6.22],[125.33,6.17],[125.27,6.16],[125.22,6.19],[125.21,6.24],[125.26,6.27]]] }
+    }
+  ]
+}

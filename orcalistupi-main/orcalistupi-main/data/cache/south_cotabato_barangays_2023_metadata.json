@@ -1,0 +1,91 @@
+{
+  "cache_format_version": 2,
+  "geometry_snapshot": "31 December 2023",
+  "feature_count": 199,
+  "locality_count": 11,
+  "region_psgc": "1200000000",
+  "province_psgc": "1206300000",
+  "province_name": "South Cotabato",
+  "source_repository": "faeldon/philippines-json-maps",
+  "source_commit": "8eeead560246863c8c820c31ca6fbca81a279477",
+  "catalogue_file": "data\\south_cotabato_localities_2023.csv",
+  "administrative_scope": "All barangays in the Province of South Cotabato only",
+  "geometry_quality": {
+    "rectangle_ratio": 0.0,
+    "mean_vertices_per_feature": 6.241206030150754,
+    "min_lon": 124.40645356900005,
+    "max_lon": 125.18954006700005,
+    "min_lat": 6.01072849600007,
+    "max_lat": 6.654583915000046,
+    "lon_span": 0.783086498000003,
+    "lat_span": 0.6438554189999763
+  },
+  "files": [
+    {
+      "locality_code": "1206302000",
+      "locality": "Banga",
+      "url": "https://raw.githubusercontent.com/faeldon/philippines-json-maps/8eeead560246863c8c820c31ca6fbca81a279477/2023/geojson/municities/medres/bgysubmuns-municity-1206302000.0.01.json",
+      "features": "22"
+    },
+    {
+      "locality_code": "1206306000",
+      "locality": "City of Koronadal",
+      "url": "https://raw.githubusercontent.com/faeldon/philippines-json-maps/8eeead560246863c8c820c31ca6fbca81a279477/2023/geojson/municities/medres/bgysubmuns-municity-1206306000.0.01.json",
+      "features": "27"
+    },
+    {
+      "locality_code": "1206319000",
+      "locality": "Lake Sebu",
+      "url": "https://raw.githubusercontent.com/faeldon/philippines-json-maps/8eeead560246863c8c820c31ca6fbca81a279477/2023/geojson/municities/medres/bgysubmuns-municity-1206319000.0.01.json",
+      "features": "19"
+    },
+    {
+      "locality_code": "1206311000",
+      "locality": "Norala",
+      "url": "https://raw.githubusercontent.com/faeldon/philippines-json-maps/8eeead560246863c8c820c31ca6fbca81a279477/2023/geojson/municities/medres/bgysubmuns-municity-1206311000.0.01.json",
+      "features": "14"
+    },
+    {
+      "locality_code": "1206312000",
+      "locality": "Polomolok",
+      "url": "https://raw.githubusercontent.com/faeldon/philippines-json-maps/8eeead560246863c8c820c31ca6fbca81a279477/2023/geojson/municities/medres/bgysubmuns-municity-1206312000.0.01.json",
+      "features": "23"
+    },
+    {
+      "locality_code": "1206318000",
+      "locality": "Santo Niño",
+      "url": "https://raw.githubusercontent.com/faeldon/philippines-json-maps/8eeead560246863c8c820c31ca6fbca81a279477/2023/geojson/municities/medres/bgysubmuns-municity-1206318000.0.01.json",
+      "features": "10"
+    },
+    {
+      "locality_code": "1206313000",
+      "locality": "Surallah",
+      "url": "https://raw.githubusercontent.com/faeldon/philippines-json-maps/8eeead560246863c8c820c31ca6fbca81a279477/2023/geojson/municities/medres/bgysubmuns-municity-1206313000.0.01.json",
+      "features": "17"
+    },
+    {
+      "locality_code": "1206316000",
+      "locality": "T'Boli",
+      "url": "https://raw.githubusercontent.com/faeldon/philippines-json-maps/8eeead560246863c8c820c31ca6fbca81a279477/2023/geojson/municities/medres/bgysubmuns-municity-1206316000.0.01.json",
+      "features": "25"
+    },
+    {
+      "locality_code": "1206314000",
+      "locality": "Tampakan",
+      "url": "https://raw.githubusercontent.com/faeldon/philippines-json-maps/8eeead560246863c8c820c31ca6fbca81a279477/2023/geojson/municities/medres/bgysubmuns-municity-1206314000.0.01.json",
+      "features": "14"
+    },
+    {
+      "locality_code": "1206315000",
+      "locality": "Tantangan",
+      "url": "https://raw.githubusercontent.com/faeldon/philippines-json-maps/8eeead560246863c8c820c31ca6fbca81a279477/2023/geojson/municities/medres/bgysubmuns-municity-1206315000.0.01.json",
+      "features": "13"
+    },
+    {
+      "locality_code": "1206317000",
+      "locality": "Tupi",
+      "url": "https://raw.githubusercontent.com/faeldon/philippines-json-maps/8eeead560246863c8c820c31ca6fbca81a279477/2023/geojson/municities/hires/bgysubmuns-municity-1206317000.0.1.json",
+      "features": "15"
+    }
+  ]
+}

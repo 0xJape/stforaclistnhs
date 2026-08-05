@@ -1,0 +1,375 @@
+<!doctype html><html><head><meta charset="utf-8"><title>ORACLIS South Cotabato Spatio-Temporal Bayesian Report</title>
+<style>body{font:12pt 'Times New Roman',serif;max-width:1180px;margin:28px auto;padding:0 20px;color:#222}h1,h2{color:#17324d}.warning{border:2px solid #b45309;background:#fff7ed;padding:12px}.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.metric{border:1px solid #aaa;padding:10px}figure{margin:22px 0}img{max-width:100%;border:1px solid #ccc}table.data{border-collapse:collapse;width:100%;font-size:10pt}table.data th,table.data td{border:1px solid #aaa;padding:5px;text-align:right}table.data th:first-child,table.data td:first-child{text-align:left}code{background:#eee;padding:2px 4px}</style></head><body>
+<h1>ORACLIS South Cotabato Spatio-Temporal Feature Engineering, Bayesian Simulation, and Outbreak Detection</h1>
+<div class="warning"><b>Scientific scope:</b> The geographic scope is the Province of South Cotabato only. The available monthly dengue targets were interpolated from annual totals. All South Cotabato barangays are marked as calibrated in this system. The 2026–2050 results are long-range projections, not validated clinical forecasts.</div>
+<h2>Run summary</h2><div class="metrics">
+<div class="metric"><b>South Cotabato barangays</b><br>199</div>
+<div class="metric"><b>Matched source barangays</b><br>158</div>
+<div class="metric"><b>Unmatched source barangays</b><br>1</div>
+<div class="metric"><b>Monthly snapshots</b><br>300</div></div>
+<p><b>Projection period:</b> 2026-01-01 through 2050-12-01<br>
+<b>Boundary vintage:</b> 31 December 2023<br>
+<b>Weighted ensemble formula:</b> <code>0.467574773035*MLR + 0.160119413816*SARIMAX + 0.154670440279*LSTM + 0.217635372871*XGBOOST</code><br>
+<b>Monte Carlo draws per barangay-month:</b> 250<br>
+<b>Automatic outbreak rules:</b> individual barangay threshold/probability rule, probabilistic High/Critical persistence-neighbour rule, OR a connected cluster of at least three truly adjacent barangays in the visible red projected-case zone.</p>
+<p><a href="maps/ORACLIS_SouthCotabato_Interactive_Forecast_Map.html">Open the interactive South Cotabato map and live charts</a></p>
+<h2>Municipality data coverage</h2><table class="dataframe data">
+  <thead>
+    <tr style="text-align: right;">
+      <th>MUNICIPALITY_CODE</th>
+      <th>MUNICIPALITY</th>
+      <th>TOTAL_BARANGAYS</th>
+      <th>CALIBRATED_BARANGAYS</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1206302000</td>
+      <td>Banga</td>
+      <td>22</td>
+      <td>22</td>
+    </tr>
+    <tr>
+      <td>1206306000</td>
+      <td>City of Koronadal</td>
+      <td>27</td>
+      <td>27</td>
+    </tr>
+    <tr>
+      <td>1206319000</td>
+      <td>Lake Sebu</td>
+      <td>19</td>
+      <td>19</td>
+    </tr>
+    <tr>
+      <td>1206311000</td>
+      <td>Norala</td>
+      <td>14</td>
+      <td>14</td>
+    </tr>
+    <tr>
+      <td>1206312000</td>
+      <td>Polomolok</td>
+      <td>23</td>
+      <td>23</td>
+    </tr>
+    <tr>
+      <td>1206318000</td>
+      <td>Santo Niño</td>
+      <td>10</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <td>1206313000</td>
+      <td>Surallah</td>
+      <td>17</td>
+      <td>17</td>
+    </tr>
+    <tr>
+      <td>1206316000</td>
+      <td>T'Boli</td>
+      <td>25</td>
+      <td>25</td>
+    </tr>
+    <tr>
+      <td>1206314000</td>
+      <td>Tampakan</td>
+      <td>14</td>
+      <td>14</td>
+    </tr>
+    <tr>
+      <td>1206315000</td>
+      <td>Tantangan</td>
+      <td>13</td>
+      <td>13</td>
+    </tr>
+    <tr>
+      <td>1206317000</td>
+      <td>Tupi</td>
+      <td>15</td>
+      <td>15</td>
+    </tr>
+  </tbody>
+</table>
+<h2>Highest-risk barangays across the scenario horizon</h2><table class="dataframe data">
+  <thead>
+    <tr style="text-align: right;">
+      <th>PSGC</th>
+      <th>PROVINCE</th>
+      <th>MUNICIPALITY</th>
+      <th>BARANGAY</th>
+      <th>CALIBRATION_STATUS</th>
+      <th>MEAN_OUTBREAK_PROBABILITY</th>
+      <th>MAX_OUTBREAK_PROBABILITY</th>
+      <th>MEAN_POSTERIOR_CASES</th>
+      <th>MAX_POSTERIOR_CASES</th>
+      <th>AUTOMATIC_ALERT_MONTHS</th>
+      <th>MAX_HOTSPOT_Z_SCORE</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1206312024</td>
+      <td>South Cotabato</td>
+      <td>Polomolok</td>
+      <td>Cannery Site</td>
+      <td>CALIBRATED_SOUTH_COTABATO</td>
+      <td>0.2571</td>
+      <td>0.3440</td>
+      <td>5.5107</td>
+      <td>6.3040</td>
+      <td>299</td>
+      <td>7.1673</td>
+    </tr>
+    <tr>
+      <td>1206312014</td>
+      <td>South Cotabato</td>
+      <td>Polomolok</td>
+      <td>Poblacion</td>
+      <td>CALIBRATED_SOUTH_COTABATO</td>
+      <td>0.2058</td>
+      <td>0.2840</td>
+      <td>6.9561</td>
+      <td>7.9920</td>
+      <td>299</td>
+      <td>7.5707</td>
+    </tr>
+    <tr>
+      <td>1206312025</td>
+      <td>South Cotabato</td>
+      <td>Polomolok</td>
+      <td>Pagalungan</td>
+      <td>CALIBRATED_SOUTH_COTABATO</td>
+      <td>0.3033</td>
+      <td>0.4000</td>
+      <td>2.7685</td>
+      <td>3.3400</td>
+      <td>298</td>
+      <td>5.7679</td>
+    </tr>
+    <tr>
+      <td>1206312017</td>
+      <td>South Cotabato</td>
+      <td>Polomolok</td>
+      <td>Rubber</td>
+      <td>CALIBRATED_SOUTH_COTABATO</td>
+      <td>0.2995</td>
+      <td>0.3800</td>
+      <td>2.7346</td>
+      <td>3.2760</td>
+      <td>276</td>
+      <td>3.1419</td>
+    </tr>
+    <tr>
+      <td>1206312016</td>
+      <td>South Cotabato</td>
+      <td>Polomolok</td>
+      <td>Magsaysay</td>
+      <td>CALIBRATED_SOUTH_COTABATO</td>
+      <td>0.4175</td>
+      <td>0.5120</td>
+      <td>2.5672</td>
+      <td>3.0960</td>
+      <td>268</td>
+      <td>6.1848</td>
+    </tr>
+    <tr>
+      <td>1206312003</td>
+      <td>South Cotabato</td>
+      <td>Polomolok</td>
+      <td>Glamang</td>
+      <td>CALIBRATED_SOUTH_COTABATO</td>
+      <td>0.2856</td>
+      <td>0.3840</td>
+      <td>2.6467</td>
+      <td>3.1360</td>
+      <td>267</td>
+      <td>3.5510</td>
+    </tr>
+    <tr>
+      <td>1206312022</td>
+      <td>South Cotabato</td>
+      <td>Polomolok</td>
+      <td>Upper Klinan</td>
+      <td>CALIBRATED_SOUTH_COTABATO</td>
+      <td>0.3981</td>
+      <td>0.4880</td>
+      <td>2.4404</td>
+      <td>2.9800</td>
+      <td>231</td>
+      <td>4.7988</td>
+    </tr>
+    <tr>
+      <td>1206313019</td>
+      <td>South Cotabato</td>
+      <td>Surallah</td>
+      <td>Libertad</td>
+      <td>CALIBRATED_SOUTH_COTABATO</td>
+      <td>0.1537</td>
+      <td>0.2440</td>
+      <td>3.0238</td>
+      <td>3.6560</td>
+      <td>229</td>
+      <td>3.1482</td>
+    </tr>
+    <tr>
+      <td>1206313003</td>
+      <td>South Cotabato</td>
+      <td>Surallah</td>
+      <td>Centrala</td>
+      <td>CALIBRATED_SOUTH_COTABATO</td>
+      <td>0.1297</td>
+      <td>0.2200</td>
+      <td>2.7984</td>
+      <td>3.4240</td>
+      <td>229</td>
+      <td>4.1937</td>
+    </tr>
+    <tr>
+      <td>1206313023</td>
+      <td>South Cotabato</td>
+      <td>Surallah</td>
+      <td>Moloy</td>
+      <td>CALIBRATED_SOUTH_COTABATO</td>
+      <td>0.1839</td>
+      <td>0.2760</td>
+      <td>2.6494</td>
+      <td>3.3480</td>
+      <td>215</td>
+      <td>3.8727</td>
+    </tr>
+    <tr>
+      <td>1206313004</td>
+      <td>South Cotabato</td>
+      <td>Surallah</td>
+      <td>Colongulo</td>
+      <td>CALIBRATED_SOUTH_COTABATO</td>
+      <td>0.1531</td>
+      <td>0.2440</td>
+      <td>2.4150</td>
+      <td>2.9960</td>
+      <td>197</td>
+      <td>3.7460</td>
+    </tr>
+    <tr>
+      <td>1206312007</td>
+      <td>South Cotabato</td>
+      <td>Polomolok</td>
+      <td>Lam-Caliaf</td>
+      <td>CALIBRATED_SOUTH_COTABATO</td>
+      <td>0.3887</td>
+      <td>0.4880</td>
+      <td>2.3974</td>
+      <td>2.8840</td>
+      <td>189</td>
+      <td>7.3221</td>
+    </tr>
+    <tr>
+      <td>1206313020</td>
+      <td>South Cotabato</td>
+      <td>Surallah</td>
+      <td>Little Baguio</td>
+      <td>CALIBRATED_SOUTH_COTABATO</td>
+      <td>0.1793</td>
+      <td>0.2760</td>
+      <td>2.6181</td>
+      <td>3.2640</td>
+      <td>188</td>
+      <td>1.9625</td>
+    </tr>
+    <tr>
+      <td>1206312013</td>
+      <td>South Cotabato</td>
+      <td>Polomolok</td>
+      <td>Palkan</td>
+      <td>CALIBRATED_SOUTH_COTABATO</td>
+      <td>0.2721</td>
+      <td>0.3800</td>
+      <td>2.5514</td>
+      <td>3.0840</td>
+      <td>178</td>
+      <td>2.7733</td>
+    </tr>
+    <tr>
+      <td>1206312019</td>
+      <td>South Cotabato</td>
+      <td>Polomolok</td>
+      <td>Silway 8</td>
+      <td>CALIBRATED_SOUTH_COTABATO</td>
+      <td>0.3769</td>
+      <td>0.4680</td>
+      <td>2.3231</td>
+      <td>2.7800</td>
+      <td>140</td>
+      <td>7.5179</td>
+    </tr>
+    <tr>
+      <td>1206313006</td>
+      <td>South Cotabato</td>
+      <td>Surallah</td>
+      <td>Duengas</td>
+      <td>CALIBRATED_SOUTH_COTABATO</td>
+      <td>0.2378</td>
+      <td>0.3320</td>
+      <td>2.3431</td>
+      <td>3.0960</td>
+      <td>131</td>
+      <td>3.2390</td>
+    </tr>
+    <tr>
+      <td>1206313008</td>
+      <td>South Cotabato</td>
+      <td>Surallah</td>
+      <td>Canahay</td>
+      <td>CALIBRATED_SOUTH_COTABATO</td>
+      <td>0.1411</td>
+      <td>0.2560</td>
+      <td>2.3224</td>
+      <td>2.8800</td>
+      <td>102</td>
+      <td>2.8324</td>
+    </tr>
+    <tr>
+      <td>1206313018</td>
+      <td>South Cotabato</td>
+      <td>Surallah</td>
+      <td>Lamsugod</td>
+      <td>CALIBRATED_SOUTH_COTABATO</td>
+      <td>0.1512</td>
+      <td>0.2680</td>
+      <td>2.3990</td>
+      <td>3.0280</td>
+      <td>82</td>
+      <td>2.9917</td>
+    </tr>
+    <tr>
+      <td>1206313028</td>
+      <td>South Cotabato</td>
+      <td>Surallah</td>
+      <td>Talahik</td>
+      <td>CALIBRATED_SOUTH_COTABATO</td>
+      <td>0.2235</td>
+      <td>0.3360</td>
+      <td>2.2514</td>
+      <td>2.8560</td>
+      <td>75</td>
+      <td>3.4024</td>
+    </tr>
+    <tr>
+      <td>1206313024</td>
+      <td>South Cotabato</td>
+      <td>Surallah</td>
+      <td>Naci</td>
+      <td>CALIBRATED_SOUTH_COTABATO</td>
+      <td>0.2199</td>
+      <td>0.3320</td>
+      <td>2.2352</td>
+      <td>2.7640</td>
+      <td>74</td>
+      <td>3.0848</td>
+    </tr>
+  </tbody>
+</table>
+<h2>Generated figures</h2><figure><img src="charts/annual_projection_by_data_coverage_status.png" alt="annual_projection_by_data_coverage_status"><figcaption>Annual Projection By Data Coverage Status</figcaption></figure><figure><img src="charts/automatic_alerts_by_municipality.png" alt="automatic_alerts_by_municipality"><figcaption>Automatic Alerts By Municipality</figcaption></figure><figure><img src="charts/average_outbreak_factor_contribution.png" alt="average_outbreak_factor_contribution"><figcaption>Average Outbreak Factor Contribution</figcaption></figure><figure><img src="charts/barangay_data_coverage_by_municipality.png" alt="barangay_data_coverage_by_municipality"><figcaption>Barangay Data Coverage By Municipality</figcaption></figure><figure><img src="charts/calibrated_south_cotabato_projection.png" alt="calibrated_south_cotabato_projection"><figcaption>Calibrated South Cotabato Projection</figcaption></figure><figure><img src="charts/monthly_barangay_alert_counts.png" alt="monthly_barangay_alert_counts"><figcaption>Monthly Barangay Alert Counts</figcaption></figure><figure><img src="charts/monthly_global_morans_i.png" alt="monthly_global_morans_i"><figcaption>Monthly Global Morans I</figcaption></figure><figure><img src="charts/monthly_outbreak_onsets_and_automatic_alerts.png" alt="monthly_outbreak_onsets_and_automatic_alerts"><figcaption>Monthly Outbreak Onsets And Automatic Alerts</figcaption></figure><figure><img src="charts/monthly_projected_cases_by_municipality.png" alt="monthly_projected_cases_by_municipality"><figcaption>Monthly Projected Cases By Municipality</figcaption></figure><figure><img src="charts/municipality_year_outbreak_probability_heatmap.png" alt="municipality_year_outbreak_probability_heatmap"><figcaption>Municipality Year Outbreak Probability Heatmap</figcaption></figure><figure><img src="charts/south_cotabato_monthly_projection_with_bayesian_interval.png" alt="south_cotabato_monthly_projection_with_bayesian_interval"><figcaption>South Cotabato Monthly Projection With Bayesian Interval</figcaption></figure><figure><img src="charts/top20_barangays_maximum_outbreak_probability.png" alt="top20_barangays_maximum_outbreak_probability"><figcaption>Top20 Barangays Maximum Outbreak Probability</figcaption></figure><figure><img src="charts/uncertainty_width_by_horizon.png" alt="uncertainty_width_by_horizon"><figcaption>Uncertainty Width By Horizon</figcaption></figure>
+<h2>Backend files</h2><ul><li><code>database/oraclis_spatiotemporal.sqlite</code></li><li><code>tables/monthly_barangay_forecasts.csv</code></li><li><code>tables/monthly_municipality_summary.csv</code></li><li><code>tables/outbreak_alerts.csv</code></li><li><code>tables/red_cluster_outbreak_events.csv</code></li><li><code>tables/outbreak_factor_summary.csv</code></li><li><code>tables/outbreak_factor_by_municipality.csv</code></li><li><code>tables/spatial_adjacency_edges.csv</code></li><li><code>maps/south_cotabato_barangays_with_status.geojson</code></li><li><code>maps/south_cotabato_municipality_boundaries.geojson</code></li></ul>
+</body></html>

@@ -1,0 +1,60 @@
+{
+  "project": "ORACLIS Weighted Ensemble",
+  "created_at": "2026-07-25T10:49:27",
+  "source_training_run": "run_20260724_210644",
+  "source_test_predictions_sha256": "fbd084aeaad4f55e710da8c6d36c1fea3fddbb8d7aaaef45ba6de8b6e1c85cdf",
+  "source_dataset_sha256": "e009d41241a4fbb1e0b5ec578aa964b58edbc224943b9966726b48a81aef243c",
+  "model_order": [
+    "MLR",
+    "SARIMAX",
+    "LSTM",
+    "XGBOOST"
+  ],
+  "selected_method": "constrained_rmse",
+  "weights": {
+    "MLR": 0.46757477303493417,
+    "SARIMAX": 0.16011941381588968,
+    "LSTM": 0.15467044027850763,
+    "XGBOOST": 0.21763537287066845
+  },
+  "constraints": {
+    "nonnegative": true,
+    "sum_to_one": true
+  },
+  "formula_machine_readable": "0.467574773035*MLR + 0.160119413816*SARIMAX + 0.154670440279*LSTM + 0.217635372871*XGBOOST",
+  "prediction_floor": 0.0,
+  "weight_estimation_period": {
+    "start": "2023-01-01",
+    "end": "2023-12-01",
+    "observations": 108
+  },
+  "untouched_test_period": {
+    "start": "2024-01-01",
+    "end": "2025-12-01",
+    "observations": 216
+  },
+  "test_metrics": {
+    "MODEL": "WEIGHTED_ENSEMBLE",
+    "SCOPE": "OVERALL",
+    "MUNICIPALITY": "ALL",
+    "N": 216.0,
+    "r2": 0.9520634291808165,
+    "rmse": 4.061487287301125,
+    "mae": 1.9146009866742038,
+    "mape_percent": 5.594844947635786,
+    "wape_percent": 5.244816907059328
+  },
+  "scientific_warning": "Monthly dengue values were interpolated from annual totals and are synthetic.",
+  "software_versions": {
+    "python": "3.14.5 (tags/v3.14.5:5607950, May 10 2026, 10:43:50) [MSC v.1944 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "numpy": "2.5.1",
+    "pandas": "3.0.5",
+    "scipy": "1.18.0",
+    "scikit_learn": "1.9.0",
+    "statsmodels": "0.14.6",
+    "xgboost": "3.3.0",
+    "torch": "2.13.0+cpu",
+    "matplotlib": "3.11.1"
+  }
+}

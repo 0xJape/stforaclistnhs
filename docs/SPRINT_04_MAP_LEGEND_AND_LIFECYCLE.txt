@@ -1,0 +1,20 @@
+ORACLIS Sprint 04 - Map legend and lifecycle
+Date: 2026-07-27
+
+Done
+- Legend now uses same green → yellow → red scale as risk polygons.
+- Legend labels change with selected visualization metric.
+- Added gray no-scenario-data explanation.
+- Fixed MapLibre reload lifecycle race.
+- Boundary status now updates only after MapLibre idle confirms barangay source exists.
+
+Validation
+- npm run build: PASS
+- npm run lint: PASS
+- Browser: PASS
+  Status displayed: "199 barangay boundaries loaded · 199 barangays · dengue risk scenario"
+  Metric test: hotspot legend showed lower/higher hotspot score labels.
+
+Files changed
+- frontend/src/App.tsx
+- frontend/src/App.css

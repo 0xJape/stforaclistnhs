@@ -1,0 +1,37 @@
+Administrative scope: Province of South Cotabato only
+Boundary features: 199
+Municipalities/city: 11
+Calibrated nodes: 199
+Forecast rows: 59700
+Forecast months: 300
+Spatial edges: 580
+Automatic alert rows: 4209
+probabilities_within_0_1: True
+credible_interval_ordering_valid: True
+no_negative_posterior_predictions: True
+spatial_weights_row_sums_equal_1: True
+all_nodes_are_south_cotabato: True
+municipality_count_valid: True
+barangay_count_valid: True
+forecast_row_count_valid: True
+interactive_map_exists: True
+html_report_exists: True
+municipality_boundary_count_valid: True
+sqlite_exists: True
+factor_shares_sum_to_one: True
+automatic_outbreak_onsets_are_active_alerts: True
+red_cluster_alerts_have_at_least_three_members: True
+each_red_cluster_has_exactly_one_likely_origin: True
+cluster_origins_are_cluster_members: True
+strict_contiguity_is_symmetric: True
+automatic_alert_reason_is_populated: True
+cluster_event_table_matches_unique_clusters: True
+cluster_event_origins_are_complete: True
+leaflet_map_marker_present: True
+outside_mask_present: True
+outbreak_ping_layer_present: True
+permanent_barangay_labels_present: True
+boundary_gaps_fully_filled: True
+full_screen_map_layout_present: True
+live_ranking_and_parameter_table_present: True
+three_red_barangay_rule_present: True

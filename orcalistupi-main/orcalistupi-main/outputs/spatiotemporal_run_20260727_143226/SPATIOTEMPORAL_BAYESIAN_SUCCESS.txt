@@ -1,0 +1,1 @@
+ORACLIS spatio-temporal Bayesian simulation completed successfully.

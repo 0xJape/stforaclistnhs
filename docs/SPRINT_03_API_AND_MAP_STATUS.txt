@@ -1,0 +1,17 @@
+ORACLIS Sprint 03 - API and map status
+Date: 2026-07-27
+
+Done
+- Split static boundary health from forecast API health.
+- Map status now reports boundary loading/errors independently.
+- API failure message confirms boundaries remain usable.
+- Status bar shows both map and scenario states.
+
+Validation
+- npm run build: PASS
+- npm run lint: PASS
+- Browser: PASS
+  Status displayed: "199 barangay boundaries loaded · 199 barangays · dengue risk scenario"
+
+Files changed
+- frontend/src/App.tsx

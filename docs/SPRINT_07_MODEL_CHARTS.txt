@@ -1,0 +1,19 @@
+SPRINT 07 — MODEL-DRIVEN CHARTS
+
+Dependency
+- Added recharts. Needed for interactive multi-series visualizations, tooltips, axes, and responsive sizing.
+
+Delivered chart bindings
+- Forecast and uncertainty: POSTERIOR_MEAN_CASES, LOWER_CREDIBLE_CASES, UPPER_CREDIBLE_CASES from selected PSGC timeline.
+- Municipality projected burden: POSTERIOR_MEAN_CASES from monthly_municipality_summary for active scenario date.
+- Connected cluster impact: PROJECTED_CASES by RED_CLUSTER_ID from /api/clusters for active scenario date; shown only when clusters exist.
+
+Scientific guard
+- Scenario projections only.
+- Historical monthly values include interpolation; not official outbreak declarations.
+
+Validation
+- Browser: chart dashboard shells render.
+- npm run build: PASS.
+- npm run lint: PASS.
+- Vite chunk warning remains. Recharts increases gzipped bundle from about 310 KB to 418 KB.
