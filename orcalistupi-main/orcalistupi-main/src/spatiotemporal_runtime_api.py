@@ -406,7 +406,7 @@ class Handler(BaseHTTPRequestHandler):
 
             if path == "/api/auth/session":
                 user = self.session_user()
-                self.send_json({"data": user}, 200 if user else 401)
+                self.send_json({"data": user})
                 return
 
             if path == "/api/reports":
