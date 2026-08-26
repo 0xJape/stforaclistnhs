@@ -18,15 +18,17 @@ export default function Hero({rows,onEnter,leaving}:{rows:HeroRow[];onEnter:()=>
   map.once('load',async()=>{try{const geo=await fetch('/maps/south_cotabato_barangays_2023.geojson').then(response=>{if(!response.ok)throw new Error('Map unavailable');return response.json()})
    geoRef.current=geo;applyRows(geo,rowsRef.current)
    map.addSource('hero-barangays',{type:'geojson',data:geo})
+  map.addLayer({id:'hero-fill',type:'fill',source:'hero-barangays',paint:{'fill-color':['interpolate',['linear'],['get','risk'],0,'#263238',.25,'#70452f',.55,'#b96442',.8,'#e5484d',1,'#ffddd8'],'fill-opacity':.72}})
    map.addLayer({id:'hero-extrusion',type:'fill-extrusion',source:'hero-barangays',paint:{'fill-extrusion-color':['interpolate',['linear'],['get','risk'],0,'#20262a',.25,'#70452f',.55,'#b96442',.8,'#e5484d',1,'#ffddd8'],'fill-extrusion-height':['interpolate',['linear'],['get','cases'],0,0,1,850,5,2500,12,5200],'fill-extrusion-base':0,'fill-extrusion-opacity':.88}})
-   map.addLayer({id:'hero-line',type:'line',source:'hero-barangays',paint:{'line-color':'#f8e9e4','line-width':.55,'line-opacity':.48}})
-   map.fitBounds([[124.406,6.010],[125.190,6.655]],{padding:70,duration:0,maxZoom:8.8})
+  map.addLayer({id:'hero-line',type:'line',source:'hero-barangays',paint:{'line-color':'#00f5ff','line-width':1.4,'line-opacity':1}})
+  requestAnimationFrame(()=>{map.resize();map.fitBounds([[124.406,6.010],[125.190,6.655]],{padding:40,duration:0,maxZoom:8.8})})
   const pauseRotation=()=>{interactingRef.current=true;window.clearTimeout(resumeTimerRef.current);resumeTimerRef.current=window.setTimeout(()=>{interactingRef.current=false},5000)}
   map.on('movestart',pauseRotation)
   const rotate=()=>{if(!interactingRef.current)map.rotateTo(map.getBearing()+.006,{duration:0});frameRef.current=requestAnimationFrame(rotate)}
   rotate()
-  }catch{}})
-  return()=>{cancelAnimationFrame(frameRef.current);window.clearTimeout(resumeTimerRef.current);map.remove();mapRef.current=null}
+  }catch(error){console.error('Hero map failed',error)}})
+  const resizeObserver=new ResizeObserver(()=>map.resize());resizeObserver.observe(container.current)
+  return()=>{resizeObserver.disconnect();cancelAnimationFrame(frameRef.current);window.clearTimeout(resumeTimerRef.current);map.remove();mapRef.current=null}
  },[])
  const sweep=()=>{setSweeping(true);mapRef.current?.easeTo({pitch:64,bearing:mapRef.current.getBearing()+28,duration:850,essential:true});window.setTimeout(()=>setSweeping(false),1050)}
  return <section className={`hero${leaving?' is-leaving':''}${sweeping?' is-sweeping':''}`} aria-label="ORACLIS intelligence landing"><div className="hero-map" ref={container}/><div className="hero-vignette"/><div className="hero-grid"/><div className="hero-scan"/><div className="hero-copy"><div className="hero-kicker"><i/>South Cotabato · live scenario intelligence</div><h1>See risk<br/><em>before spread.</em></h1><p>ORACLIS turns barangay-level Bayesian projections into operational spatial intelligence.</p><div className="hero-facts"><span><b>{rows.length||199}</b>barangays</span><span><b>3D</b>risk terrain</span><span><b>16D</b>weather context</span></div><div className="hero-actions"><button className="hero-enter" onClick={onEnter}>Open intelligence map <span>↓</span></button><button className="hero-sweep" onClick={sweep} aria-pressed={sweeping}>Run signal sweep <span>⌁</span></button></div><small className="hero-hint">Drag terrain · scroll or pinch zoom · right-drag tilt</small></div><div className="hero-mosquitoes" aria-hidden="true">{[1,2,3,4,5,6,7,8].map(item=><i key={item} style={mosquitoStyle(item)}>⌁</i>)}</div><button className="hero-skip" onClick={onEnter}>Skip intro</button><small className="hero-note">Scenario visualization · not official outbreak declaration</small></section>
