@@ -86,7 +86,9 @@ function App(){
       map.addLayer({id:'barangay-label',type:'symbol',source:'barangays',minzoom:10.5,layout:{'text-field':['get','barangay'],'text-size':10,'text-max-width':9,'text-font':['Open Sans Regular'],'text-allow-overlap':false},paint:{'text-color':'#ecfeff','text-halo-color':'#071014','text-halo-width':1.5}})
       map.addSource('municipalities',{type:'geojson',data:{type:'FeatureCollection',features:[...municipalityPoints].map(([name,p])=>({type:'Feature',geometry:{type:'Point',coordinates:[p.x/p.n,p.y/p.n]},properties:{name}}))}})
       map.addLayer({id:'municipality-label',type:'symbol',source:'municipalities',minzoom:8,layout:{'text-field':['get','name'],'text-size':13,'text-font':['Open Sans Bold'],'text-letter-spacing':.06,'text-allow-overlap':true},paint:{'text-color':'#ffffff','text-halo-color':'#071014','text-halo-width':2.5}})
-      map.fitBounds([[124.406,6.010],[125.190,6.655]],{padding:45,duration:0,maxZoom:9})
+      const bounds=[[124.406,6.010],[125.190,6.655]] as [[number,number],[number,number]]
+      if (!Number.isFinite(bounds[0][0]) || !Number.isFinite(bounds[1][1])) throw new Error('Map bounds are invalid')
+      requestAnimationFrame(()=>{map.resize();map.fitBounds(bounds,{padding:45,duration:0,maxZoom:9})})
       map.addLayer({id:'selected-line',type:'line',source:'barangays',filter:['==',['get','psgc'],''],paint:{'line-color':'#fff','line-width':3}})
       setMapReady(true)
       setMapStatus('199 barangay boundaries loaded')
@@ -94,9 +96,10 @@ function App(){
       map.on('mouseenter','barangay-fill',()=>map.getCanvas().style.cursor='pointer');map.on('mouseleave','barangay-fill',()=>{map.getCanvas().style.cursor='';popup.remove()})
       map.on('mousemove','barangay-fill',(e:MapLayerMouseEvent)=>{const id=String(e.features?.[0]?.properties?.psgc??''),row=rowsRef.current.find(r=>String(r.PSGC)===id),reported=viewModeRef.current==='weather'?observedRef.current.find(item=>item.psgc===id):undefined;if(row)popup.setLngLat(e.lngLat).setHTML(`<strong>${escapeHtml(row.BARANGAY)}</strong><span>${escapeHtml(row.MUNICIPALITY)} · ${reported?`${reported.total_cases} reported cases` : formattedValue(valueOf(row,metricRef.current),metricRef.current)}</span>`).addTo(map)})
       map.on('click','barangay-fill',(e:MapLayerMouseEvent)=>{const id=String(e.features?.[0]?.properties?.psgc??''),row=rowsRef.current.find(r=>String(r.PSGC)===id);if(!row)return;setSelected(current=>{if(current?.PSGC===row.PSGC){setModalOpen(false);setWeatherModalOpen(false);return null}if(viewModeRef.current==='weather'){setModalOpen(false);setWeatherModalOpen(true)}else{setWeatherModalOpen(false);setModalOpen(true)}return row})})
-    }catch(e){setMapStatus(e instanceof Error?e.message:'Map geometry unavailable')}}
+    }catch(e){console.error('Main map failed',e);setMapStatus(e instanceof Error?e.message:'Map geometry unavailable')}}
     if(map.loaded())void load();else map.once('load',()=>void load())
-    return()=>{map.remove();mapRef.current=null;if(alertMap===map)alertMap=null}
+    const resizeObserver=new ResizeObserver(()=>map.resize());resizeObserver.observe(container.current)
+    return()=>{resizeObserver.disconnect();map.remove();mapRef.current=null;if(alertMap===map)alertMap=null}
   },[showHero])
 
   useEffect(()=>{fetch('/api/dates').then(check).then((d:Collection<string>)=>setDates(d.items)).catch(()=>setApiStatus('API unavailable. Start START_API.bat, then reload.'))},[])
