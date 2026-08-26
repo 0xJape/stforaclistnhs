@@ -63,7 +63,7 @@ function App(){
   useEffect(()=>{
     if(!container.current||mapRef.current)return
     const map=new maplibregl.Map({container:container.current,center:[124.85,6.25],zoom:8.7,preserveDrawingBuffer:true,style:{version:8,sources:{osm:{type:'raster',tiles:['https://tile.openstreetmap.org/{z}/{x}/{y}.png'],tileSize:256,attribution:'© OpenStreetMap contributors'}},layers:[{id:'osm',type:'raster',source:'osm',paint:{'raster-opacity':.28,'raster-saturation':-1}}]}})
-    mapRef.current=map;alertMap=map;map.addControl(new maplibregl.NavigationControl({showCompass:false}),'bottom-right')
+    mapRef.current=map;alertMap=map;(window as typeof window&{__oraclisMap?:MapLibreMap}).__oraclisMap=map;map.addControl(new maplibregl.NavigationControl({showCompass:false}),'bottom-right')
     map.on('error',event=>setMapStatus(`Map renderer error: ${event.error.message}`))
     const load=async()=>{try{const geo=await fetch('/maps/south_cotabato_barangays_2023.geojson').then(check)
       if(geo.type!=='FeatureCollection'||geo.features?.length!==199)throw new Error('Map geometry is invalid')
@@ -100,7 +100,7 @@ function App(){
     }catch(e){console.error('Main map failed',e);setMapStatus(e instanceof Error?e.message:'Map geometry unavailable')}}
     if(map.loaded())void load();else map.once('load',()=>void load())
     const resizeObserver=new ResizeObserver(()=>map.resize());resizeObserver.observe(container.current)
-    return()=>{resizeObserver.disconnect();map.remove();mapRef.current=null;if(alertMap===map)alertMap=null}
+    return()=>{resizeObserver.disconnect();delete (window as typeof window&{__oraclisMap?:MapLibreMap}).__oraclisMap;map.remove();mapRef.current=null;if(alertMap===map)alertMap=null}
   },[showHero])
 
   useEffect(()=>{fetch('/api/dates').then(check).then((d:Collection<string>)=>setDates(d.items)).catch(()=>setApiStatus('API unavailable. Start START_API.bat, then reload.'))},[])
