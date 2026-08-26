@@ -11,6 +11,7 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from typing import Any
 from urllib.parse import parse_qs, urlencode, unquote, urlparse
+from urllib.error import HTTPError, URLError
 from urllib.request import urlopen
 
 from groq_audio import synthesize, transcribe
@@ -491,7 +492,11 @@ class Handler(BaseHTTPRequestHandler):
                     self.send_json({"error": "date is required"}, 400)
                     return
                 days = parse_limit(first(query, "days", "16"), default=16, maximum=16)
-                rows = short_term_weather_scenario(self.run_dir, self.database_path, date, days)
+                try:
+                    rows = short_term_weather_scenario(self.run_dir, self.database_path, date, days)
+                except (HTTPError, URLError) as exc:
+                    self.send_json({"date": date, "days": days, "count": 0, "items": [], "model_note": "Weather provider unavailable; forecast map remains available.", "weather_error": str(exc)}, 200)
+                    return
                 self.send_json({"date": date, "days": days, "count": len(rows), "items": rows, "model_note": "Experimental municipality weather-context scenario. Historical cases and weather are synthetic/interpolated. This is not an outbreak probability, alert, or surveillance forecast."})
                 return
 
