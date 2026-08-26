@@ -88,8 +88,9 @@ function App(){
       map.addLayer({id:'municipality-label',type:'symbol',source:'municipalities',minzoom:8,layout:{'text-field':['get','name'],'text-size':13,'text-font':['Open Sans Bold'],'text-letter-spacing':.06,'text-allow-overlap':true},paint:{'text-color':'#ffffff','text-halo-color':'#071014','text-halo-width':2.5}})
       const bounds=[[124.406,6.010],[125.190,6.655]] as [[number,number],[number,number]]
       if (!Number.isFinite(bounds[0][0]) || !Number.isFinite(bounds[1][1])) throw new Error('Map bounds are invalid')
-      requestAnimationFrame(()=>{map.resize();map.fitBounds(bounds,{padding:45,duration:0,maxZoom:9})})
       map.addLayer({id:'selected-line',type:'line',source:'barangays',filter:['==',['get','psgc'],''],paint:{'line-color':'#fff','line-width':3}})
+      for(const id of ['scenario-heat','barangay-risk-fill','barangay-fill','barangay-line','municipality-selected-line','province-line','barangay-label','municipality-label','alert-ring','alert-core'])map.setLayoutProperty(id,'visibility','visible')
+      requestAnimationFrame(()=>{map.resize();map.fitBounds(bounds,{padding:45,duration:0,maxZoom:9});map.triggerRepaint()})
       setMapReady(true)
       setMapStatus('199 barangay boundaries loaded')
       const popup=new maplibregl.Popup({closeButton:false,closeOnClick:false,offset:10})
