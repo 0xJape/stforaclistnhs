@@ -4,7 +4,7 @@ services:
     runtime: python
     rootDir: orcalistupi-main/orcalistupi-main
     buildCommand: pip install -r requirements.txt && python src/run_spatiotemporal_bayesian.py
-    startCommand: python src/spatiotemporal_runtime_api.py --host 0.0.0.0 --port $PORT --cors-origin "$ORACLIS_CORS_ORIGIN"
+    startCommand: python src/spatiotemporal_runtime_api.py --host 0.0.0.0 --port $PORT
     healthCheckPath: /api/health
     envVars:
       - key: ORACLIS_CORS_ORIGIN
