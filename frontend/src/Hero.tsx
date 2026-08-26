@@ -15,7 +15,7 @@ export default function Hero({rows,onEnter,leaving}:{rows:HeroRow[];onEnter:()=>
   mapRef.current=map
     map.dragPan.enable();map.dragRotate.enable();map.scrollZoom.enable();map.touchZoomRotate.enable();map.keyboard.enable()
   map.addControl(new maplibregl.NavigationControl({showCompass:true,showZoom:false,visualizePitch:true}),'bottom-right')
-  map.once('load',async()=>{try{const geo=await fetch('/maps/south_cotabato_barangays_2023.geojson').then(response=>{if(!response.ok)throw new Error('Map unavailable');return response.json()})
+  map.once('load',async()=>{try{const payload=await fetch('/maps/south_cotabato_barangays_2023.geojson').then(response=>{if(!response.ok)throw new Error('Map unavailable');return response.json()});const {crs: _crs,...geo}=payload
    geoRef.current=geo;applyRows(geo,rowsRef.current)
    map.addSource('hero-barangays',{type:'geojson',data:geo})
   map.addLayer({id:'hero-fill',type:'fill',source:'hero-barangays',paint:{'fill-color':['interpolate',['linear'],['get','risk'],0,'#263238',.25,'#70452f',.55,'#b96442',.8,'#e5484d',1,'#ffddd8'],'fill-opacity':.72}})

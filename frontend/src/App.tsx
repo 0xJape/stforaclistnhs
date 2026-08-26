@@ -65,14 +65,14 @@ function App(){
     const map=new maplibregl.Map({container:container.current,center:[124.85,6.25],zoom:8.7,preserveDrawingBuffer:true,style:{version:8,sources:{osm:{type:'raster',tiles:['https://tile.openstreetmap.org/{z}/{x}/{y}.png'],tileSize:256,attribution:'© OpenStreetMap contributors'}},layers:[{id:'osm',type:'raster',source:'osm',paint:{'raster-opacity':.28,'raster-saturation':-1}}]}})
     mapRef.current=map;alertMap=map;(window as typeof window&{__oraclisMap?:MapLibreMap}).__oraclisMap=map;map.addControl(new maplibregl.NavigationControl({showCompass:false}),'bottom-right')
     map.on('error',event=>setMapStatus(`Map renderer error: ${event.error.message}`))
-    const load=async()=>{try{const geo=await fetch('/api/geometry/barangays').then(check)
+    const load=async()=>{try{const barangayPayload=await fetch('/api/geometry/barangays').then(check);const {crs: _barangayCrs,...geo}=barangayPayload
       if(geo.type!=='FeatureCollection'||geo.features?.length!==199)throw new Error('Map geometry is invalid')
       geo.features.forEach((feature:{id?:string;properties:Record<string,string>})=>{const p=feature.properties;p.psgc=String(p.psgc??p.ORACLIS_PSGC??p.adm4_psgc);p.barangay=p.barangay??p.ORACLIS_BARANGAY??p.adm4_en;p.municipality=p.municipality??p.ORACLIS_LOCALITY;feature.id=p.psgc})
       if(geo.features.some((feature:{properties:{psgc?:string}})=>!feature.properties.psgc))throw new Error('Map geometry is missing barangay identifiers')
       const municipalityPoints=new Map<string,{x:number;y:number;n:number}>()
       pointsRef.current=geo.features.map((feature:{geometry:unknown;properties:{psgc:string;municipality:string}})=>{const [x,y]=centerOf(feature.geometry);const municipality=feature.properties.municipality;const total=municipalityPoints.get(municipality)??{x:0,y:0,n:0};municipalityPoints.set(municipality,{x:total.x+x,y:total.y+y,n:total.n+1});return {type:'Feature',geometry:{type:'Point',coordinates:[x,y]},properties:{psgc:feature.properties.psgc}}})
       map.addSource('barangays',{type:'geojson',data:geo})
-      const province=await fetch('/api/geometry/province').then(check)
+      const provincePayload=await fetch('/api/geometry/province').then(check);const {crs: _provinceCrs,...province}=provincePayload
       map.addSource('province',{type:'geojson',data:province})
       map.addLayer({id:'barangay-fill',type:'fill',source:'barangays',paint:{'fill-color':'#ffffff','fill-opacity':.12}})
       map.addSource('scenario-points',{type:'geojson',data:{type:'FeatureCollection',features:[]}})
