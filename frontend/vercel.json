@@ -2,11 +2,11 @@
   "rewrites": [
     {
       "source": "/api/:path*",
-      "destination": "https://oraclis-api.onrender.com/api/:path*"
+      "destination": "https://stforaclistnhs.onrender.com/api/:path*"
     },
     {
       "source": "/files/:path*",
-      "destination": "https://oraclis-api.onrender.com/files/:path*"
+      "destination": "https://stforaclistnhs.onrender.com/files/:path*"
     }
   ]
 }
