@@ -1,0 +1,36 @@
+flowchart TD
+    Start([Start])
+    Setup["Set up ORACLIS system"]
+    Load["Load historical dengue data,<br/>barangay boundaries, and model files"]
+    Collect["Collect new barangay reports<br/>and weather data"]
+    Validate["Validate and prepare all data"]
+    Valid{ "Is data valid?" }
+    Fix["Correct missing or invalid data"]
+    Analyze["Analyze data and predict dengue risk"]
+    Generate["Generate cases, risk levels,<br/>hotspots, and alerts"]
+    Store[("Store forecast results")]
+    Backend["Start backend API"]
+    Frontend["Start frontend application"]
+    Display["Display map, analytics,<br/>weather, and forecasts"]
+    Submit["Users submit or view information"]
+    Admin["Admin reviews submitted reports"]
+    Approved{ "Is report approved?" }
+    Return["Return report for correction"]
+    Update["Update validated data"]
+    Alert{ "Is risk HIGH or CRITICAL?" }
+    Notify["Send alert to users or authorities"]
+    Continue["Continue monitoring and collecting data"]
+    End([End / repeat monitoring])
+
+    Start --> Setup --> Load --> Collect --> Validate --> Valid
+    Valid -->|No| Fix --> Validate
+    Valid -->|Yes| Analyze --> Generate --> Store
+    Store --> Backend --> Frontend --> Display
+    Display --> Submit
+    Submit -->|Submit report| Admin --> Approved
+    Approved -->|No| Return --> Submit
+    Approved -->|Yes| Update --> Validate
+    Submit -->|View information| Alert
+    Alert -->|Yes| Notify --> Continue
+    Alert -->|No| Continue
+    Continue --> End

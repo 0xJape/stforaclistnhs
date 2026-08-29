@@ -1,0 +1,33 @@
+flowchart TD
+    Start([Backend starts])
+    Load["Load data and model files"]
+    Prepare["Validate and prepare data"]
+    Predict["Run dengue risk prediction"]
+    Save[("Save forecast results")]
+    Request["Receive frontend request"]
+    Route{"Choose request type"}
+    Auth["Authenticate user"]
+    Report["Validate and save barangay report"]
+    Forecast["Read forecast results"]
+    Weather["Fetch or read weather data"]
+    Assistant["Build assistant response"]
+    Response["Return API response"]
+    Review["Admin reviews report"]
+    Alert{"HIGH or CRITICAL risk?"}
+    Notify["Send alert"]
+    End([Backend continues running])
+
+    Start --> Load --> Prepare --> Predict --> Save
+    Save --> Alert
+    Alert -->|Yes| Notify --> End
+    Alert -->|No| End
+
+    Request --> Route
+    Route -->|Login| Auth --> Response
+    Route -->|Barangay report| Report --> Review
+    Review -->|Approved| Prepare
+    Review -->|Needs correction| Response
+    Route -->|Forecast or map| Forecast --> Response
+    Route -->|Weather| Weather --> Response
+    Route -->|Assistant| Assistant --> Response
+    Response --> End

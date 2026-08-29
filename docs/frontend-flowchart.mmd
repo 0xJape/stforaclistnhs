@@ -1,0 +1,39 @@
+flowchart TD
+    Start([Open ORACLIS])
+    Home["Show home page"]
+    Choose{"Choose feature"}
+    Map["Open risk map"]
+    Analytics["Open analytics"]
+    Weather["Open weather intelligence"]
+    Assistant["Open assistant"]
+    Login["Open login"]
+    Load["Request data from backend"]
+    Display["Display maps, charts,<br/>weather, or answers"]
+    Select["User selects location,<br/>date, layer, or filter"]
+    Details["Show location details"]
+    Ask["Submit text or voice question"]
+    Answer["Show assistant answer"]
+    Credentials["Enter login details"]
+    Role{"Identify user role"}
+    Barangay["Open barangay dashboard"]
+    Report["Complete and submit report"]
+    Admin["Open admin dashboard"]
+    Review["Review submitted reports"]
+    Logout["Log out"]
+    End([Return to home])
+
+    Start --> Home --> Choose
+    Choose -->|Map| Map --> Load --> Display
+    Choose -->|Analytics| Analytics --> Load
+    Choose -->|Weather| Weather --> Load
+    Choose -->|Assistant| Assistant
+    Choose -->|Login| Login --> Credentials --> Role
+
+    Display --> Select --> Details --> Display
+    Assistant --> Ask --> Load --> Answer --> Assistant
+
+    Role -->|Barangay encoder| Barangay --> Report --> Load
+    Role -->|Administrator| Admin --> Review --> Load
+    Barangay --> Logout
+    Admin --> Logout
+    Logout --> End --> Home

@@ -16,3 +16,7 @@ frontend/dist/
 **/data/make_alert_delivery.sqlite
 **/data/oraclis_reporting_demo.sqlite
 orcalistupi-main/orcalistupi-main/outputs/spatiotemporal_run_20260727_140517/
+
+# Runtime-generated backend data
+orcalistupi-main/orcalistupi-main/outputs/
+orcalistupi-main/orcalistupi-main/data/cache/
