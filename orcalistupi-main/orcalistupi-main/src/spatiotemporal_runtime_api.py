@@ -222,6 +222,10 @@ class Handler(BaseHTTPRequestHandler):
         self.end_headers()
         self.wfile.write(body)
 
+    def client_disconnected(self) -> None:
+        """Ignore browser cancellations; no response remains to send."""
+        print(f"[ORACLIS API] client disconnected during {self.command} {self.path}")
+
     def send_bytes(self, body: bytes, content_type: str) -> None:
         self.send_response(200)
         self.send_header("Content-Type", content_type)
@@ -374,6 +378,8 @@ class Handler(BaseHTTPRequestHandler):
             if not isinstance(message, str) or not isinstance(context, dict):
                 raise ValueError("message must be text and context must be an object")
             self.send_json(ask_agent(str(self.database_path), message, context, lambda forecast: municipality_weather_forecast(self.run_dir) if forecast else municipality_weather(self.run_dir), self.reporting_store.observed_snapshot))
+        except (BrokenPipeError, ConnectionAbortedError, ConnectionResetError):
+            self.client_disconnected()
         except PermissionError as exc:
             self.send_json({"error": "unauthorized", "message": str(exc)}, 401)
         except (ValueError, json.JSONDecodeError) as exc:
