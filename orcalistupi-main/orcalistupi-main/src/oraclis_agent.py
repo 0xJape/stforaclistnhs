@@ -9,6 +9,7 @@ from urllib.error import HTTPError, URLError
 from urllib.request import Request, urlopen
 
 WARNING = "Scenario projection; not official outbreak declaration. Historical monthly dengue values were interpolated from annual totals."
+WHO_SOURCE = "WHO Dengue fact sheet, reviewed 21 August 2025: https://www.who.int/news-room/fact-sheets/detail/dengue-and-severe-dengue"
 MODEL_EXPLANATION = (
     "ORACLIS starts with each barangay's monthly climatology and a capped long-term trend. "
     "It blends that baseline with recent temporal memory, then adds spatial pressure from neighboring barangays. "
@@ -68,6 +69,8 @@ def _evidence(database_path: str, message: str, context: dict[str, Any]) -> tupl
         return "greeting", [], {}
     if CONVERSATION.fullmatch(message):
         return "conversation", [], {}
+    if any(word in text for word in ("symptom", "warning sign", "prevent", "prevention", "mosquito bite", "treatment", "care", "aspirin", "ibuprofen")):
+        return "health_guidance", [{"source": WHO_SOURCE, "facts": "Common symptoms include high fever, headache, pain behind the eyes, muscle or joint pain, nausea, vomiting, swollen glands, and rash. Severe abdominal pain, persistent vomiting, rapid breathing, bleeding, blood in vomit or stool, extreme thirst, pale or cold skin, weakness, fatigue, or restlessness require immediate care. Prevention uses bite protection and weekly removal or cleaning of water-holding containers. WHO advises fluids, professional medical care, and avoiding aspirin and ibuprofen because they can increase bleeding risk."}], {}
     if any(word in text for word in ("reported case", "reported cases", "actual case", "actual cases", "current case", "current cases", "case total", "case totals", "number of cases", "how many cases", "cases in", "cases at")):
         reported = context.get("observed")
         if not isinstance(reported, list):
@@ -129,6 +132,8 @@ def _fallback(intent: str, evidence: list[dict[str, Any]]) -> str:
         row = evidence[0]
         period = row.get("reporting_period") or "no reporting period"
         return f"Current reported aggregate total is {int(row.get('total_cases', 0))} cases for {period}. This is a reported total, separate from ORACLIS model projections and outbreak probability."
+    if intent == "health_guidance":
+        return f"{evidence[0]['facts']} This is educational guidance, not a diagnosis or substitute for medical advice. Source: {WHO_SOURCE}"
     if intent == "model_explanation":
         return MODEL_EXPLANATION
     if intent == "weather":
@@ -193,5 +198,5 @@ def ask(database_path: str, message: str, context: dict[str, Any] | None = None,
     groq_answer = _groq_answer(message, intent, evidence)
     answer = groq_answer or _fallback(intent, evidence)
     answer = re.sub(r"[*_`#]+", "", answer).replace("%", " percent").replace("–", " to ").replace("—", ", ")
-    warnings = [] if intent in {"greeting", "conversation", "clarification", "case_clarification", "reported_cases", "weather"} else [WARNING]
+    warnings = ["Educational guidance does not replace advice from a qualified health professional."] if intent == "health_guidance" else ([] if intent in {"greeting", "conversation", "clarification", "case_clarification", "reported_cases", "weather"} else [WARNING])
     return {"answer": answer, "intent": intent, "source": "groq" if groq_answer else "fallback", "evidence": evidence, "warnings": warnings, "actions": actions}

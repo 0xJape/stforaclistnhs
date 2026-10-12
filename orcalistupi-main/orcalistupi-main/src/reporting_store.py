@@ -76,8 +76,14 @@ class ReportingStore:
                     archived_at TEXT,
                     created_at TEXT NOT NULL,
                     updated_at TEXT NOT NULL,
-                    version INTEGER NOT NULL DEFAULT 1
+                    version INTEGER NOT NULL DEFAULT 1,
+                    municipality TEXT NOT NULL DEFAULT '',
+                    barangay TEXT NOT NULL DEFAULT '',
+                    purok TEXT NOT NULL DEFAULT '',
+                    contact_number TEXT NOT NULL DEFAULT '',
+                    symptoms TEXT NOT NULL DEFAULT ''
                 );
+                
                 CREATE TABLE IF NOT EXISTS reporting_audit_log (
                     id INTEGER PRIMARY KEY,
                     entity_type TEXT NOT NULL,
@@ -102,6 +108,10 @@ class ReportingStore:
                     expires_at TEXT NOT NULL
                 );
             """)
+            existing_columns = {row["name"] for row in db.execute("PRAGMA table_info(demo_patients)")}
+            for column in ("municipality", "barangay", "purok", "contact_number", "symptoms"):
+                if column not in existing_columns:
+                    db.execute(f"ALTER TABLE demo_patients ADD COLUMN {column} TEXT NOT NULL DEFAULT ''")
             row = db.execute("SELECT id FROM reporting_users WHERE username IN ('barangay-demo','barangayname@oraclis.com')").fetchone()
             if row:
                 db.execute("DELETE FROM reporting_sessions WHERE user_id=?", (row["id"],))
@@ -242,9 +252,14 @@ class ReportingStore:
         display_name = str(payload.get("display_name", "")).strip()[:80]
         age_band = str(payload.get("age_band", "")).strip()[:30]
         psgc = str(payload.get("psgc", "")).strip()
-        sex = str(payload.get("sex", "unspecified"))
+        sex = str(payload.get("sex", "unspecified")).strip()
         classification = str(payload.get("classification", "suspected"))
         case_status = str(payload.get("case_status", "active"))
+        municipality = str(payload.get("municipality", "")).strip()[:80]
+        barangay = str(payload.get("barangay", "")).strip()[:80]
+        purok = str(payload.get("purok", "")).strip()[:80]
+        contact_number = str(payload.get("contact_number", "")).strip()[:40]
+        symptoms = str(payload.get("symptoms", "")).strip()[:1000]
         onset_date, reported_date = str(payload.get("onset_date", "")), str(payload.get("reported_date", ""))
         if not display_name or not age_band or len(psgc) != 10 or not psgc.isdigit():
             raise ValueError("display_name, age_band, and a 10-digit psgc are required")
@@ -255,10 +270,39 @@ class ReportingStore:
         stamp = now()
         with self.connection() as db:
             cursor = db.execute("""INSERT INTO demo_patients
-                (display_name,age_band,sex,psgc,onset_date,reported_date,classification,case_status,created_at,updated_at)
-                VALUES (?,?,?,?,?,?,?,?,?,?)""", (display_name, age_band, sex, psgc, onset_date, reported_date, classification, case_status, stamp, stamp))
+                (display_name,age_band,sex,psgc,onset_date,reported_date,classification,case_status,municipality,barangay,purok,contact_number,symptoms,created_at,updated_at)
+                VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)""", (display_name, age_band, sex, psgc, onset_date, reported_date, classification, case_status, municipality, barangay, purok, contact_number, symptoms, stamp, stamp))
             item_id = int(cursor.lastrowid)
             db.execute("INSERT INTO reporting_audit_log(entity_type,entity_id,action,occurred_at) VALUES ('demo_patient',?,'created',?)", (item_id, stamp))
+            return dict(db.execute("SELECT * FROM demo_patients WHERE id=?", (item_id,)).fetchone())
+
+    def update_demo_patient(self, item_id: int, psgc: str, payload: dict[str, Any]) -> dict[str, Any]:
+        display_name = str(payload.get("display_name", "")).strip()[:80]
+        age_band = str(payload.get("age_band", "")).strip()[:30]
+        sex = str(payload.get("sex", "unspecified")).strip()
+        classification = str(payload.get("classification", "suspected")).strip()
+        case_status = str(payload.get("case_status", "active")).strip()
+        municipality = str(payload.get("municipality", "")).strip()[:80]
+        barangay = str(payload.get("barangay", "")).strip()[:80]
+        purok = str(payload.get("purok", "")).strip()[:80]
+        contact_number = str(payload.get("contact_number", "")).strip()[:40]
+        symptoms = str(payload.get("symptoms", "")).strip()[:1000]
+        onset_date, reported_date = str(payload.get("onset_date", "")), str(payload.get("reported_date", ""))
+        if not display_name or not age_band:
+            raise ValueError("display_name and age_band are required")
+        if sex not in {"female", "male", "other", "unspecified"} or classification not in {"suspected", "probable", "confirmed", "discarded"} or case_status not in {"active", "recovered", "deceased"}:
+            raise ValueError("Invalid patient classification or status")
+        for value in (onset_date, reported_date):
+            date.fromisoformat(value)
+        if onset_date > reported_date:
+            raise ValueError("onset_date cannot be after reported_date")
+        stamp = now()
+        with self.connection() as db:
+            cursor = db.execute("""UPDATE demo_patients SET display_name=?,age_band=?,sex=?,onset_date=?,reported_date=?,classification=?,case_status=?,municipality=?,barangay=?,purok=?,contact_number=?,symptoms=?,updated_at=?,version=version+1
+                WHERE id=? AND psgc=? AND archived_at IS NULL""", (display_name, age_band, sex, onset_date, reported_date, classification, case_status, municipality, barangay, purok, contact_number, symptoms, stamp, item_id, psgc))
+            if cursor.rowcount != 1:
+                raise ValueError("Patient record not found")
+            db.execute("INSERT INTO reporting_audit_log(entity_type,entity_id,action,occurred_at) VALUES ('demo_patient',?,'updated',?)", (item_id, stamp))
             return dict(db.execute("SELECT * FROM demo_patients WHERE id=?", (item_id,)).fetchone())
 
     def reset_demo_patients(self, psgc: str) -> int:

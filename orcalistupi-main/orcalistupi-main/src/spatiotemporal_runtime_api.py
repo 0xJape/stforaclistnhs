@@ -215,24 +215,30 @@ class Handler(BaseHTTPRequestHandler):
 
     def send_json(self, payload: Any, status: int = 200) -> None:
         body = json_bytes(payload)
-        self.send_response(status)
-        self.send_header("Content-Type", "application/json; charset=utf-8")
-        self.send_header("Content-Length", str(len(body)))
-        self.common_headers()
-        self.end_headers()
-        self.wfile.write(body)
+        try:
+            self.send_response(status)
+            self.send_header("Content-Type", "application/json; charset=utf-8")
+            self.send_header("Content-Length", str(len(body)))
+            self.common_headers()
+            self.end_headers()
+            self.wfile.write(body)
+        except (BrokenPipeError, ConnectionAbortedError, ConnectionResetError):
+            self.client_disconnected()
 
     def client_disconnected(self) -> None:
         """Ignore browser cancellations; no response remains to send."""
         print(f"[ORACLIS API] client disconnected during {self.command} {self.path}")
 
     def send_bytes(self, body: bytes, content_type: str) -> None:
-        self.send_response(200)
-        self.send_header("Content-Type", content_type)
-        self.send_header("Content-Length", str(len(body)))
-        self.common_headers()
-        self.end_headers()
-        self.wfile.write(body)
+        try:
+            self.send_response(200)
+            self.send_header("Content-Type", content_type)
+            self.send_header("Content-Length", str(len(body)))
+            self.common_headers()
+            self.end_headers()
+            self.wfile.write(body)
+        except (BrokenPipeError, ConnectionAbortedError, ConnectionResetError):
+            self.client_disconnected()
 
     def send_file(self, path: Path) -> None:
         if not path.exists() or not path.is_file():
@@ -283,7 +289,7 @@ class Handler(BaseHTTPRequestHandler):
         try:
             path = unquote(urlparse(self.path).path)
             reporting_paths = {"/api/reports", "/api/demo-patients", "/api/demo-patients/reset", "/api/auth/login", "/api/auth/logout"}
-            if path not in {"/api/agent/ask", "/api/agent/transcribe", "/api/agent/speech", "/api/weather/facebook-post", *reporting_paths} and not path.startswith("/api/reports/"):
+            if path not in {"/api/agent/ask", "/api/agent/transcribe", "/api/agent/speech", "/api/weather/facebook-post", *reporting_paths} and not path.startswith(("/api/reports/", "/api/demo-patients/")):
                 self.send_error(HTTPStatus.NOT_FOUND, "Unknown endpoint")
                 return
             length = int(self.headers.get("Content-Length", "0"))
@@ -343,6 +349,11 @@ class Handler(BaseHTTPRequestHandler):
                 user = self.require_barangay_user()
                 payload["psgc"] = user["psgc"]
                 self.send_json({"data": self.reporting_store.create_demo_patient(payload), "demo": True}, 201)
+                return
+            if path.startswith("/api/demo-patients/") and path != "/api/demo-patients/reset":
+                user = self.require_barangay_user()
+                item_id = int(path.split("/")[3])
+                self.send_json({"data": self.reporting_store.update_demo_patient(item_id, user["psgc"], payload)})
                 return
             if path == "/api/demo-patients/reset":
                 user = self.require_barangay_user()
