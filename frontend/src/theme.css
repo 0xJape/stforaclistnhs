@@ -10,23 +10,24 @@ body,:is(button,input,select,textarea){font-family:var(--oraclis-font)}
 :is(.landing-capabilities article,.help-content>section,.methodology-card,.methodology-section article,.patient-card) p:last-child{margin-block-end:0}
 :is(.topbar,.help-topbar,.methodology-nav,.bd-topbar) :is(a,button){white-space:nowrap}
 :is(input,select,textarea){line-height:1.4}
-:root[data-theme=light]{--bg-page:#e7ecee;--bg-raised:#f1f4f5;--bg-card:#fafbfb;--bg-control:#fff;--text-strong:#152027;--text-normal:#2f3e45;--text-muted:#52636b;--text-disabled:#78878e;--border-subtle:#c3cdd1;--border-strong:#8e9da4;--primary:#bd2930;--primary-hover:#982127;--primary-soft:#f7e2e3;--focus:#087986;--success:#237a4b;--success-soft:#e1f2e8;--warning:#805300;--warning-soft:#f7edd5;--danger:#a92027;--danger-soft:#fae1e3;--info:#176b9c;--info-soft:#deedf5;--shadow:#26323838;color:var(--text-strong);background:var(--bg-page)}
-:root[data-theme=light] body{background:#dfe5e7;color:#182126}
+:root[data-theme=light]{--bg-page:#9eafb4;--bg-raised:#b9c7ca;--bg-card:#c8d3d5;--bg-control:#d8e1e3;--text-strong:#071216;--text-normal:#13272e;--text-muted:#294149;--text-disabled:#4c626a;--border-subtle:#80969d;--border-strong:#526b73;--primary:#c62f38;--primary-hover:#982127;--primary-soft:#efd0d2;--focus:#006f7d;--success:#237a4b;--success-soft:#cde4d4;--warning:#805300;--warning-soft:#eadbb9;--danger:#a92027;--danger-soft:#f0cdd0;--info:#176b9c;--info-soft:#c4dce6;--shadow:#26323866;color:var(--text-strong);background:var(--bg-page)}
+:root[data-theme=light] body{background:#98a9ae;color:#13272e}
 :root[data-theme=light] .theme-toggle{border-color:#89969c;background:#e9edefeb;color:#182126;box-shadow:0 8px 28px #26323838}
-:root[data-theme=light] :is(.landing,.help-page,.methodology-page,.barangay-dashboard){background:#dfe5e7;color:#182126}
+:root[data-theme=light] :is(.landing,.help-page,.methodology-page,.barangay-dashboard){background:#98a9ae;color:#13272e}
 :root[data-theme=light] :is(.hero-vignette,.hero-scan,.hero-grid,.hero-mosquitoes){opacity:.28}
 :root[data-theme=light] .hero-copy{color:#fff}:root[data-theme=light] .hero-copy>p,:root[data-theme=light] .hero-hint{color:#eef2f3}
-:root[data-theme=light] :is(.landing-intro,.landing-capabilities,.landing-flow,.landing-help,.landing-footer,.help-content,.methodology-section,.bd-kpis,.bd-map-card,.reporting-workspace){background:#dfe5e7;color:#182126}
-:root[data-theme=light] :is(.landing-capabilities article,.help-content>section,.help-contact,.help-form select,.help-form textarea,.help-form input,.help-contact>div,.methodology-card,.methodology-section article,.bd-kpis article,.bd-map-card,.bd-form,.bd-history,.patient-card,.registry-toolbar){background:#edf1f2;color:#182126;border-color:#b5c0c4}
-:root[data-theme=light] :is(.landing-intro p,.landing-capabilities p,.landing-flow span,.landing-help p,.help-hero p,.help-heading>p,.help-contact>p,.help-guides details p,.methodology-page p,.bd-hero p,.bd-map-card p,.bd-history small,.patient-card dd){color:#536168}
-:root[data-theme=light] :is(.help-topbar,.methodology-nav,.bd-topbar){background:#e9edefed;color:#182126;border-color:#b5c0c4}
+:root[data-theme=light] :is(.landing-intro,.landing-capabilities,.landing-flow,.landing-help,.landing-footer,.help-content,.methodology-section,.bd-kpis,.bd-map-card,.reporting-workspace){background:#aebdc1;color:#13272e}
+:root[data-theme=light] :is(.landing-capabilities article,.help-content>section,.help-contact,.help-form select,.help-form textarea,.help-form input,.help-contact>div,.methodology-card,.methodology-section article,.bd-kpis article,.bd-map-card,.bd-form,.bd-history,.patient-card,.registry-toolbar){background:#e1e7e8;color:#182126;border-color:#aab8bd}
+:root[data-theme=light] :is(.landing-intro p,.landing-capabilities p,.landing-flow span,.landing-help p,.help-hero p,.help-heading>p,.help-contact>p,.help-guides details p,.methodology-page p,.bd-hero p,.bd-map-card p,.bd-history small,.patient-card dd){color:#273940}
+:root[data-theme=light] :is(.help-topbar,.methodology-nav,.bd-topbar){background:#b8c5c9;color:#182126;border-color:#71848c}
 :root[data-theme=light] :is(.help-topbar a,.methodology-brand,.methodology-back,.bd-brand,.bd-account a){color:#182126}
 :root[data-theme=light] .help-content{background:#cdd4d8}:root[data-theme=light] .help-guides details{border-color:#cdd4d8}
 :root[data-theme=light] .help-confirmation{background:#e8f5ed;border-color:#75a989}:root[data-theme=light] .help-confirmation p{color:#355342}
 :root[data-theme=light] .bd-hero{background:linear-gradient(120deg,#ccd7db,#e9edef 62%,#e7d2d4);color:#182126}:root[data-theme=light] .bd-assignment{background:#edf1f2;color:#182126;border-color:#b5c0c4}
 :root[data-theme=light] :is(input,select,textarea){background:#edf1f2;color:#182126;border-color:#95a3a9}
-:root[data-theme=light] .shell{background:#d7dee1;color:#182126}:root[data-theme=light] .topbar{background:#e9edefed;color:#182126;border-color:#b5c0c4}:root[data-theme=light] .panel{background:#e4e9ebf2;color:#182126}:root[data-theme=light] :is(.left-panel,.right-panel){border-color:#b5c0c4}:root[data-theme=light] :is(.brand strong,.stats strong,.detail-card strong,.section-heading strong){color:#182126}:root[data-theme=light] :is(.brand small,.muted,.stats span,dt,.detail-card p,.section-heading small,.legend-labels,.legend-note){color:#526067}:root[data-theme=light] .outline-button{border-color:#89969c;color:#182126;background:#e9edef}:root[data-theme=light] :is(.stats,.stats div,.detail-card,.ranking li,.legend){border-color:#b5c0c4;background:#edf1f2}
+:root[data-theme=light] .shell{background:#bfcacd;color:#182126}:root[data-theme=light] .topbar{background:#aebdc1;color:#182126;border-color:#71848c}:root[data-theme=light] .panel{background:#d8e0e2f2;color:#182126}:root[data-theme=light] :is(.left-panel,.right-panel){border-color:#71848c}:root[data-theme=light] :is(.brand strong,.stats strong,.detail-card strong,.section-heading strong){color:#09151a}:root[data-theme=light] :is(.brand small,.muted,.stats span,dt,.detail-card p,.section-heading small,.legend-labels,.legend-note){color:#273940}:root[data-theme=light] .outline-button{border-color:#71848c;color:#09151a;background:#dce3e5}:root[data-theme=light] :is(.stats,.stats div,.detail-card,.ranking li,.legend){border-color:#aab8bd;background:#d2dcde}
 :root[data-theme=light] :is(.analytics-workspace,.comparison-modal,.layer-modal,.notification-drawer,.weather-cards,.barangay-modal,.alert-send-modal){background:#e4e9eb;color:#182126;border-color:#95a3a9}:root[data-theme=light] :is(.analytics-grid article,.analytics-kpis div,.comparison-results>button,.layer-modal label,.notification-drawer>div>button,.weather-grid article){background:#edf1f2;color:#182126;border-color:#b5c0c4}
+:root[data-theme=light] .knowledge-hub,.theme-toggle{box-shadow:0 10px 28px #26323855}
 @media(max-width:650px){.theme-toggle{right:12px;bottom:12px;padding:9px}.theme-toggle span+*{display:none}}
 
 /* Shared semantic color layer. Map data colors remain explicit because color carries risk meaning. */
@@ -85,3 +86,13 @@ body{background:var(--bg-page);color:var(--text-normal)}
 .recharts-default-tooltip{background:var(--bg-raised)!important;border:1px solid var(--border-strong)!important;color:var(--text-normal)!important}
 .recharts-tooltip-label,.recharts-tooltip-item{color:var(--text-normal)!important}
 :is(.primary-number strong,.ranking li b,.layers-button span,.help-guides summary b,.knowledge-hub>footer strong){color:var(--primary)}
+
+/* Light theme surfaces must stay visibly distinct from white. */
+:root[data-theme=light] .shell{background:#879ba1!important}
+:root[data-theme=light] .topbar{background:#627b83!important;color:#f4f7f7!important;border-color:#3e5962!important}
+:root[data-theme=light] .panel{background:#b2c2c6!important;border-color:#647f88!important}
+:root[data-theme=light] .left-panel,:root[data-theme=light] .right-panel{background:#b2c2c6!important}
+:root[data-theme=light] .stats,:root[data-theme=light] .stats div,:root[data-theme=light] .detail-card,:root[data-theme=light] .ranking li,:root[data-theme=light] .legend{background:#c6d3d6!important;border-color:#78929a!important}
+:root[data-theme=light] .outline-button,:root[data-theme=light] .layers-button,:root[data-theme=light] .notification-button{background:#c6d3d6!important;border-color:#526d76!important;color:#071216!important}
+:root[data-theme=light] .brand strong,:root[data-theme=light] .brand small,:root[data-theme=light] .scenario-label{color:#f4f7f7!important}
+:root[data-theme=light] .panel h1,:root[data-theme=light] .panel h2,:root[data-theme=light] .panel h3,:root[data-theme=light] .panel p,:root[data-theme=light] .panel span,:root[data-theme=light] .panel small,:root[data-theme=light] .panel dt{color:#10252c!important}
